@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>English-Myanmar Vocabulary Builder</title>
+  <title>English-Myanmar Vocab Audio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
@@ -27,839 +27,112 @@
     .rotate-y-180 {
       transform: rotateY(180deg);
     }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
-    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col text-slate-800">
 
-  <!-- TOP HEADER & NAVBAR -->
-  <header class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-purple-700 text-white shadow-lg sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+  <!-- VIBRANT PURPLE-TO-PINK HEADER BAR WITH EMBEDDED PILL VIEW SWITCHER -->
+  <header class="bg-gradient-to-r from-[#4f46e5] via-[#7c3aed] to-[#ec4899] text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Logo / Title -->
       <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateToHome()">
-        <div class="bg-white/10 p-2 rounded-xl backdrop-blur-md border border-white/20">
-          <i class="fa-solid fa-graduation-cap text-2xl text-amber-300"></i>
+        <div class="bg-white/20 p-2.5 rounded-2xl backdrop-blur-md">
+          <i class="fa-solid fa-language text-2xl text-amber-300"></i>
         </div>
         <div>
-          <h1 class="font-extrabold text-xl tracking-tight leading-tight">Myanmar Vocab Hub</h1>
-          <p class="text-xs text-indigo-200">English to Myanmar Master Learning Platform</p>
+          <h1 class="font-extrabold text-xl tracking-tight leading-tight">English - Myanmar Vocab Audio</h1>
+          <p class="text-xs text-purple-100 font-medium">Pronunciation Guide & Flashcard Trainer</p>
         </div>
       </div>
 
-      <!-- Controls & Quick Navigation -->
+      <!-- Center / Right Controls Bar -->
       <div class="flex items-center space-x-3">
-        <!-- Speed Control -->
-        <div class="flex items-center bg-indigo-900/40 rounded-lg p-1 border border-indigo-400/30 text-xs">
-          <span class="px-2 text-indigo-200 hidden sm:inline"><i class="fa-solid fa-gauge-high mr-1"></i>Speed:</span>
-          <button onclick="setSpeed(0.75)" id="speed-075" class="px-2 py-1 rounded font-medium transition hover:bg-white/10">0.75x</button>
-          <button onclick="setSpeed(1.0)" id="speed-10" class="px-2 py-1 rounded bg-indigo-500 font-medium text-white shadow-sm">1.0x</button>
-          <button onclick="setSpeed(1.25)" id="speed-125" class="px-2 py-1 rounded font-medium transition hover:bg-white/10">1.25x</button>
+        
+        <!-- View Switcher Pills (Visible inside Vocab view) -->
+        <div id="quick-view-toggle" class="hidden bg-black/20 p-1 rounded-full backdrop-blur-md flex items-center space-x-1 border border-white/10">
+          <button onclick="switchTab('list')" id="tab-btn-list" class="px-4 py-1.5 rounded-full text-xs font-bold bg-white text-indigo-700 shadow-sm transition">
+            <i class="fa-solid fa-list mr-1.5"></i>List View
+          </button>
+          <button onclick="switchTab('cards')" id="tab-btn-cards" class="px-4 py-1.5 rounded-full text-xs font-bold text-white hover:bg-white/10 transition">
+            <i class="fa-solid fa-clone mr-1.5"></i>Flashcards
+          </button>
+          <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="px-4 py-1.5 rounded-full text-xs font-bold text-white hover:bg-white/10 transition">
+            <i class="fa-solid fa-circle-question mr-1.5"></i>Quiz
+          </button>
         </div>
 
-        <button onclick="navigateToHome()" class="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition border border-white/10" title="Home">
-          <i class="fa-solid fa-house"></i>
+        <!-- Speed Selector Pills -->
+        <div class="bg-black/20 p-1 rounded-full backdrop-blur-md flex items-center space-x-1 text-xs border border-white/10">
+          <button onclick="setSpeed(0.75)" id="speed-075" class="px-2.5 py-1 rounded-full font-bold text-white/80 hover:text-white transition">0.75x</button>
+          <button onclick="setSpeed(1.0)" id="speed-10" class="px-2.5 py-1 rounded-full bg-white text-indigo-700 font-bold shadow-sm">1.0x</button>
+          <button onclick="setSpeed(1.25)" id="speed-125" class="px-2.5 py-1 rounded-full font-bold text-white/80 hover:text-white transition">1.25x</button>
+        </div>
+
+        <button onclick="navigateToHome()" class="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition border border-white/10" title="Home">
+          <i class="fa-solid fa-house text-sm"></i>
         </button>
       </div>
+
     </div>
   </header>
 
-  <!-- BREADCRUMB / SECTION INDICATOR BAR -->
+  <!-- BREADCRUMB INDICATOR BAR -->
   <div class="bg-white border-b border-slate-200 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between text-sm">
       <div id="breadcrumb" class="flex items-center space-x-2 font-medium text-slate-600">
-        <!-- JS populated breadcrumb -->
+        <!-- JS Breadcrumb -->
       </div>
-      <div id="quick-view-toggle" class="hidden flex items-center space-x-2">
-        <button onclick="switchTab('list')" id="tab-btn-list" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-600 border border-indigo-200 shadow-sm">
-          <i class="fa-solid fa-list mr-1"></i>List View
-        </button>
-        <button onclick="switchTab('cards')" id="tab-btn-cards" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 border border-transparent">
-          <i class="fa-solid fa-clone mr-1"></i>Flashcards
-        </button>
-        <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 border border-transparent">
-          <i class="fa-solid fa-circle-question mr-1"></i>Quiz Practice
-        </button>
+      <div id="vocab-count-badge" class="hidden px-3 py-1 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-full border border-indigo-100">
+        0 Words
       </div>
     </div>
   </div>
 
-  <!-- MAIN CONTENT CONTAINER -->
+  <!-- MAIN CONTAINER -->
   <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6">
 
-    <!-- 1. HOME SCREEN (EXACT GRID LAYOUT) -->
+    <!-- 1. HOME SCREEN (10 UNBOXED PILL/CARD BUTTONS IN EXACT SKETCH GRID) -->
     <div id="screen-home" class="space-y-6">
-      <div class="text-center max-w-2xl mx-auto my-4">
-        <h2 class="text-2xl font-bold text-slate-800">Select Module or Course</h2>
-        <p class="text-slate-500 text-sm mt-1">Choose a book to study chapters or select a specific category below.</p>
+      <div class="text-center max-w-2xl mx-auto my-2">
+        <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Select Course Module</h2>
+        <p class="text-slate-500 text-sm mt-1">Select a Book to access 30 Chapters, or choose a direct category below.</p>
       </div>
 
-      <!-- Home Grid Layout matching user diagram -->
+      <!-- Grid layout matching user diagram -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
         <!-- Row 1: Book 1, Book 2, Book 3 -->
-        <button onclick="selectBook(1)" class="group relative bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-indigo-400/30">
+        <button onclick="selectBook(1)" class="group bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-200">Book Series</span>
-            <h3 class="text-2xl font-extrabold mt-1">Book 1</h3>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-200">Series</span>
+            <h3 class="text-2xl font-black mt-0.5">Book 1</h3>
             <p class="text-xs text-indigo-100 mt-1">30 Chapters</p>
           </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
             <i class="fa-solid fa-book"></i>
           </div>
         </button>
 
-        <button onclick="selectBook(2)" class="group relative bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-indigo-400/30">
+        <button onclick="selectBook(2)" class="group bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-200">Book Series</span>
-            <h3 class="text-2xl font-extrabold mt-1">Book 2</h3>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-200">Series</span>
+            <h3 class="text-2xl font-black mt-0.5">Book 2</h3>
             <p class="text-xs text-indigo-100 mt-1">30 Chapters</p>
           </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
             <i class="fa-solid fa-book"></i>
           </div>
         </button>
 
-        <button onclick="selectBook(3)" class="group relative bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-indigo-400/30">
+        <button onclick="selectBook(3)" class="group bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-200">Book Series</span>
-            <h3 class="text-2xl font-extrabold mt-1">Book 3</h3>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-200">Series</span>
+            <h3 class="text-2xl font-black mt-0.5">Book 3</h3>
             <p class="text-xs text-indigo-100 mt-1">30 Chapters</p>
           </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
             <i class="fa-solid fa-book"></i>
           </div>
         </button>
 
-        <!-- Row 2: Book 4, Book 5, Book 6 -->
-        <button onclick="selectBook(4)" class="group relative bg-gradient-to-br from-indigo-600 to-indigo-800 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-indigo-400/30">
-          <div class="absolute -top-2 -right-2 bg-amber-400 text-slate-900 font-bold text-[10px] uppercase px-2 py-0.5 rounded-full shadow">Loaded</div>
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-200">Book Series</span>
-            <h3 class="text-2xl font-extrabold mt-1">Book 4</h3>
-            <p class="text-xs text-indigo-100 mt-1">30 Chapters (Ch1 & Ch2 Ready)</p>
-          </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
-            <i class="fa-solid fa-book-open"></i>
-          </div>
-        </button>
-
-        <button onclick="selectBook(5)" class="group relative bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-indigo-400/30">
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-200">Book Series</span>
-            <h3 class="text-2xl font-extrabold mt-1">Book 5</h3>
-            <p class="text-xs text-indigo-100 mt-1">30 Chapters</p>
-          </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
-            <i class="fa-solid fa-book"></i>
-          </div>
-        </button>
-
-        <button onclick="selectBook(6)" class="group relative bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-indigo-400/30">
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-200">Book Series</span>
-            <h3 class="text-2xl font-extrabold mt-1">Book 6</h3>
-            <p class="text-xs text-indigo-100 mt-1">30 Chapters</p>
-          </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
-            <i class="fa-solid fa-book"></i>
-          </div>
-        </button>
-
-        <!-- Row 3: TOEIC, Phrasal, E - mail -->
-        <button onclick="selectDirectCategory('TOEIC')" class="group relative bg-gradient-to-br from-sky-500 to-blue-700 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-sky-400/30">
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-sky-100">Specialized</span>
-            <h3 class="text-2xl font-extrabold mt-1">TOEIC</h3>
-            <p class="text-xs text-sky-100 mt-1">Business & Exam Vocab</p>
-          </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
-            <i class="fa-solid fa-briefcase"></i>
-          </div>
-        </button>
-
-        <button onclick="selectDirectCategory('Phrasal')" class="group relative bg-gradient-to-br from-emerald-500 to-teal-700 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-emerald-400/30">
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-100">Expressions</span>
-            <h3 class="text-2xl font-extrabold mt-1">Phrasal</h3>
-            <p class="text-xs text-emerald-100 mt-1">Verbs & Idioms</p>
-          </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
-            <i class="fa-solid fa-comments"></i>
-          </div>
-        </button>
-
-        <button onclick="selectDirectCategory('E - mail')" class="group relative bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-amber-400/30">
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-amber-100">Professional</span>
-            <h3 class="text-2xl font-extrabold mt-1">E - mail</h3>
-            <p class="text-xs text-amber-100 mt-1">Correspondence Terms</p>
-          </div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
-            <i class="fa-solid fa-envelope"></i>
-          </div>
-        </button>
-
-        <!-- Row 4: General (Centered) -->
-        <div class="md:col-span-3 flex justify-center mt-2">
-          <button onclick="selectDirectCategory('General')" class="group relative w-full md:w-1/3 bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between border border-purple-400/30">
-            <div>
-              <span class="text-xs font-semibold uppercase tracking-wider text-purple-100">All-purpose</span>
-              <h3 class="text-2xl font-extrabold mt-1">General</h3>
-              <p class="text-xs text-purple-100 mt-1">Everyday English</p>
-            </div>
-            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition">
-              <i class="fa-solid fa-globe"></i>
-            </div>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. CHAPTER SELECTOR (For Books 1 to 6) -->
-    <div id="screen-chapters" class="hidden space-y-6">
-      <div class="flex items-center justify-between bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-        <div>
-          <h2 id="chapter-book-title" class="text-2xl font-extrabold text-slate-800">Book Chapters</h2>
-          <p class="text-slate-500 text-sm mt-1">Select a chapter from 1 to 30 to start practicing vocabulary.</p>
-        </div>
-        <button onclick="navigateToHome()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-sm font-semibold transition">
-          <i class="fa-solid fa-arrow-left mr-2"></i>Back to Home
-        </button>
-      </div>
-
-      <div id="chapter-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3">
-        <!-- JS Populates 30 Chapter Cards -->
-      </div>
-    </div>
-
-    <!-- 3. VOCABULARY VIEW SCREEN -->
-    <div id="screen-vocab" class="hidden space-y-6">
-
-      <!-- Action Bar: Search, Stats, Import -->
-      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-        <!-- Search Input -->
-        <div class="relative w-full md:w-80">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
-          <input type="text" id="search-input" onkeyup="filterVocab()" placeholder="Search word or Myanmar definition..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
-        </div>
-
-        <!-- Quick Info & Import Button -->
-        <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
-          <span id="vocab-count-badge" class="px-3 py-1.5 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-lg border border-indigo-100">
-            0 Words Loaded
-          </span>
-
-          <button onclick="openImportModal()" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold transition shadow-sm flex items-center">
-            <i class="fa-solid fa-plus mr-1.5"></i>Add / Import Words
-          </button>
-        </div>
-      </div>
-
-      <!-- VIEW TAB 1: LIST VIEW -->
-      <div id="view-list" class="space-y-4">
-        <div id="vocab-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- JS renders word cards -->
-        </div>
-      </div>
-
-      <!-- VIEW TAB 2: FLASHCARDS VIEW -->
-      <div id="view-cards" class="hidden flex flex-col items-center justify-center py-6">
-        <div class="w-full max-w-lg perspective-1000">
-          <div id="flashcard" onclick="flipCard()" class="relative w-full h-80 rounded-3xl shadow-xl border border-indigo-100 bg-gradient-to-br from-indigo-600 to-purple-700 text-white cursor-pointer transform-style-3d transition-transform duration-500 flex flex-col justify-between p-8">
-            
-            <!-- FRONT SIDE -->
-            <div id="flashcard-front" class="absolute inset-0 p-8 flex flex-col justify-between backface-hidden bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl">
-              <div class="flex justify-between items-center">
-                <span class="text-xs uppercase tracking-widest text-indigo-200 font-bold" id="card-pos-front">WORD</span>
-                <button onclick="event.stopPropagation(); speakCurrentCard()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
-                  <i class="fa-solid fa-volume-high"></i>
-                </button>
-              </div>
-              <div class="text-center my-auto">
-                <h2 id="card-word-front" class="text-4xl font-extrabold tracking-wide">--</h2>
-                <p id="card-phonetic-front" class="text-sm font-mono text-indigo-200 mt-2">/--/</p>
-              </div>
-              <div class="text-center text-xs text-indigo-200 font-medium">
-                Tap card to reveal Myanmar meaning <i class="fa-solid fa-rotate text-amber-300 ml-1"></i>
-              </div>
-            </div>
-
-            <!-- BACK SIDE -->
-            <div id="flashcard-back" class="absolute inset-0 p-8 flex flex-col justify-between backface-hidden rotate-y-180 bg-white text-slate-800 rounded-3xl border-2 border-indigo-500">
-              <div class="flex justify-between items-center">
-                <span class="text-xs uppercase tracking-widest text-indigo-600 font-bold" id="card-pos-back">TRANSLATION</span>
-                <button onclick="event.stopPropagation(); speakCurrentCard()" class="w-10 h-10 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center transition">
-                  <i class="fa-solid fa-volume-high"></i>
-                </button>
-              </div>
-              <div class="text-center my-auto">
-                <h3 id="card-myanmar-back" class="myanmar-text text-3xl font-extrabold text-indigo-950">--</h3>
-                <p id="card-sentence-back" class="text-xs text-slate-500 italic mt-4 max-w-sm mx-auto">"--"</p>
-              </div>
-              <div class="text-center text-xs text-slate-400 font-medium">
-                Tap card to see English word
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Navigation Controls for Cards -->
-        <div class="flex items-center space-x-6 mt-8">
-          <button onclick="prevCard()" class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow hover:bg-slate-50 text-slate-700 flex items-center justify-center text-lg transition">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <span id="card-counter" class="text-sm font-bold text-slate-600">1 / 1</span>
-          <button onclick="nextCard()" class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow hover:bg-slate-50 text-slate-700 flex items-center justify-center text-lg transition">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- VIEW TAB 3: QUIZ PRACTICE -->
-      <div id="view-quiz" class="hidden max-w-xl mx-auto py-4">
-        <div class="bg-white rounded-3xl p-8 shadow-md border border-slate-200 space-y-6">
-          <div class="flex items-center justify-between border-b pb-4 border-slate-100">
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Quiz Practice</span>
-              <h3 class="text-lg font-extrabold text-slate-800">Choose the correct meaning</h3>
-            </div>
-            <span id="quiz-score" class="px-3 py-1 bg-emerald-50 text-emerald-700 font-bold text-xs rounded-full border border-emerald-200">
-              Score: 0
-            </span>
-          </div>
-
-          <div class="text-center py-4">
-            <div class="flex items-center justify-center space-x-3">
-              <h2 id="quiz-word" class="text-3xl font-extrabold text-slate-900">--</h2>
-              <button onclick="speakQuizWord()" class="w-10 h-10 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center transition">
-                <i class="fa-solid fa-volume-high"></i>
-              </button>
-            </div>
-            <p id="quiz-phonetic" class="text-sm font-mono text-slate-400 mt-1">/--/</p>
-          </div>
-
-          <!-- Multiple Choice Options -->
-          <div id="quiz-options" class="space-y-3">
-            <!-- JS Populates quiz options -->
-          </div>
-
-          <div class="pt-2 flex justify-end">
-            <button onclick="nextQuizQuestion()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-bold transition shadow-md">
-              Next Question <i class="fa-solid fa-arrow-right ml-2"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- ADD / IMPORT MODAL -->
-  <div id="import-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 space-y-5">
-      <div class="flex justify-between items-center border-b pb-3 border-slate-100">
-        <h3 class="text-lg font-bold text-slate-800">Add / Import Vocabulary Words</h3>
-        <button onclick="closeImportModal()" class="text-slate-400 hover:text-slate-600">
-          <i class="fa-solid fa-xmark text-xl"></i>
-        </button>
-      </div>
-
-      <p class="text-xs text-slate-500">
-        Enter vocabulary comma-separated (e.g. <code class="bg-slate-100 px-1 py-0.5 rounded text-indigo-600">apple, banana, orange</code>) or line by line:
-      </p>
-
-      <textarea id="import-text" rows="6" placeholder="Paste your English words here..." class="w-full p-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"></textarea>
-
-      <div class="flex justify-end space-x-3">
-        <button onclick="closeImportModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
-          Cancel
-        </button>
-        <button onclick="processImport()" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition shadow">
-          Import Words
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCRIPT LOGIC -->
-  <script>
-    // PRELOADED DATASETS FOR BOOK 4 CHAPTER 1 AND CHAPTER 2
-    const INITIAL_DATA = {
-      "Book_4_Ch_1": [
-        { word: "accountable", phonetic: "/əˈkaʊn.tə.bəl/", pos: "adj", myanmar: "တာဝန်ယူမှုရှိသော / တာဝန်ခံနိုင်သော", sentence: "Ministers must be held accountable to Parliament." },
-        { word: "addictive", phonetic: "/əˈdɪk.tɪv/", pos: "adj", myanmar: "စွဲလမ်းစေသော", sentence: "Tobacco is highly addictive." },
-        { word: "agenda", phonetic: "/əˈdʒen.də/", pos: "noun", myanmar: "အစီအစဉ် / ရည်ရွယ်ချက်", sentence: "The next item on the agenda is the budget." },
-        { word: "coin", phonetic: "/kɔɪn/", pos: "verb", myanmar: "စကားလုံးသစ် တီထွင်သည်", sentence: "The term was coined by a scientist in 1980." },
-        { word: "correlate", phonetic: "/ˈkɒr.ə.leɪt/", pos: "verb", myanmar: "ဆက်စပ်မှုရှိသည်", sentence: "Stress and illness often correlate closely." },
-        { word: "depression", phonetic: "/dɪˈpreʃ.ən/", pos: "noun", myanmar: "စိတ်ဓာတ်ကျခြင်း", sentence: "Regular exercise can help relieve depression." },
-        { word: "digital", phonetic: "/ˈdɪdʒ.ɪ.təl/", pos: "adj", myanmar: "ဒစ်ဂျစ်တယ် / နည်းပညာသုံး", sentence: "We live in a fast-paced digital age." },
-        { word: "importance", phonetic: "/ɪmˈpɔː.təns/", pos: "noun", myanmar: "အရေးပါမှု / အရေးကြီးမှု", sentence: "Education is of paramount importance." },
-        { word: "keyboard", phonetic: "/ˈkiː.bɔːd/", pos: "noun", myanmar: "ကီးဘုတ် / စာရိုက်ခလုတ်ခုံ", sentence: "He typed quickly on his computer keyboard." },
-        { word: "loneliness", phonetic: "/ˈləʊn.li.nəs/", pos: "noun", myanmar: "အထီးကျန်ခြင်း", sentence: "Loneliness can affect a person's mental health." },
-        { word: "escape", phonetic: "/ɪˈskeɪp/", pos: "verb", myanmar: "ထွက်ပြေးသည် / လွတ်မြောက်သည်", sentence: "They managed to escape from the burning house." },
-        { word: "media", phonetic: "/ˈmiː.di.ə/", pos: "noun", myanmar: "မီဒီယာ / သတင်းမီဒီယာ", sentence: "The story attracted widespread media attention." },
-        { word: "platform", phonetic: "/ˈplæt.fɔːm/", pos: "noun", myanmar: "ပလပ်ဖောင်း / ကွန်ရက်စနစ်", sentence: "Social media platforms connect millions of people." },
-        { word: "poor", phonetic: "/pɔːr/", pos: "adj", myanmar: "ဆင်းရဲသော / ညံ့ဖျင်းသော", sentence: "Many poor families live in rural areas." },
-        { word: "sidework", phonetic: "/ˈsaɪd.wɜːk/", pos: "noun", myanmar: "ဘေးထွက်အလုပ် / အပိုအလုပ်", sentence: "He earns extra money through sidework." },
-        { word: "presence", phonetic: "/ˈprez.əns/", pos: "noun", myanmar: "ရှိနေခြင်း / တည်ရှိမှု", sentence: "Her calm presence brought reassurance." },
-        { word: "harmful", phonetic: "/ˈhɑːm.fəl/", pos: "adj", myanmar: "ဘေးအန္တရာယ်ရှိသော / ထိခိုက်စေသော", sentence: "Smoking is harmful to your health." },
-        { word: "unpleasant", phonetic: "/ʌnˈplez.ənt/", pos: "adj", myanmar: "မနှစ်မြို့ဖွယ် / စိတ်တိုင်းမကျဖွယ်", sentence: "There was an unpleasant smell in the room." },
-        { word: "subject", phonetic: "/ˈsʌb.dʒekt/", pos: "noun", myanmar: "အကြောင်းအရာ / သင်ခန်းစာ", sentence: "Maths is my favorite subject." },
-        { word: "surge", phonetic: "/sɜːdʒ/", pos: "noun", myanmar: "ရုတ်တရက် မြင့်တက်လာခြင်း", sentence: "There was a sudden surge in online demand." },
-        { word: "all at once", phonetic: "/ɔːl æt wʌns/", pos: "phrase", myanmar: "တစ်ပြိုင်နက်တည်း / ရုတ်တရက်", sentence: "All at once, the lights went out." },
-        { word: "target", phonetic: "/ˈtɑː.ɡɪt/", pos: "noun", myanmar: "ပစ်မှတ် / အဓိကဦးတည်ချက်", sentence: "We reached our annual sales target." },
-        { word: "trend", phonetic: "/trend/", pos: "noun", myanmar: "ခေတ်ရေစီးကြောင်း / အလားအလာ", sentence: "Current market trends look promising." },
-        { word: "tendency", phonetic: "/ˈten.dəns.i/", pos: "noun", myanmar: "အလေ့အထ / ယိမ်းယိုင်မှု", sentence: "He has a tendency to speak too fast." },
-        { word: "validate", phonetic: "/ˈvæl.ɪ.deɪt/", pos: "verb", myanmar: "အတည်ပြုသည် / မှန်ကန်ကြောင်းသက်သေပြသည်", sentence: "The tests validated our hypothesis." },
-        { word: "reveals", phonetic: "/rɪˈviːlz/", pos: "verb", myanmar: "ဖော်ပြသည် / ဗျာဒိတ်ပေးသည်", sentence: "The research reveals a clear pattern." },
-        { word: "tobacco", phonetic: "/təˈbæk.əʊ/", pos: "noun", myanmar: "ဆေးရွက်ကြီး", sentence: "Tobacco sales have decreased." },
-        { word: "escapism", phonetic: "/ɪˈskeɪp.ɪ.zəm/", pos: "noun", myanmar: "အမှန်တရားမှ ရှောင်လွှဲလိုမှု", sentence: "Reading novels was her form of escapism." },
-        { word: "substances", phonetic: "/ˈsʌb.stəns.ɪz/", pos: "noun", myanmar: "မူးယစ်ဆေးဝါး / ဒြပ်ပစ္စည်းများ", sentence: "Dangerous chemical substances were found." },
-        { word: "selves", phonetic: "/selvz/", pos: "noun", myanmar: "မိမိတို့ကိုယ်တိုင်", sentence: "They felt like their true selves again." },
-        { word: "end up", phonetic: "/end ʌp/", pos: "verb", myanmar: "အဆုံးသတ်သွားသည်", sentence: "If you continue this way, you will end up lost." },
-        { word: "trap", phonetic: "/træp/", pos: "noun", myanmar: "ထောင်ချောက် / ဂျော့", sentence: "They were caught in a financial trap." },
-        { word: "symptoms", phonetic: "/ˈsɪmp.təmz/", pos: "noun", myanmar: "ရောဂါလက္ခဏာများ", sentence: "Fever is a common symptom of flu." },
-        { word: "extreme", phonetic: "/ɪkˈstriːm/", pos: "adj", myanmar: "လွန်ကဲသော / အစွန်းရောက်သော", sentence: "Extreme weather conditions caused delays." },
-        { word: "apparent", phonetic: "/əˈpær.ənt/", pos: "adj", myanmar: "ထင်ရှားသော / ပေါ်လွင်သော", sentence: "Her joy was apparent to everyone." }
-      ],
-      "Book_4_Ch_2": [
-        { word: "carbon", phonetic: "/ˈkɑː.bən/", pos: "noun", myanmar: "ကာဗွန်", sentence: "Carbon is the basis of all organic life." },
-        { word: "carbon dioxide", phonetic: "/ˈkɑː.bən daɪˈɒk.saɪd/", pos: "noun", myanmar: "ကာဗွန်ဒိုင်အောက်ဆိုက်ဓာတ်ငွေ့", sentence: "Trees absorb carbon dioxide from the air." },
-        { word: "coal powder", phonetic: "/kəʊl ˈpaʊ.dər/", pos: "noun", myanmar: "ကျောက်မီးသွေးမှုန့်", sentence: "Coal powder is used in power generation." },
-        { word: "dust", phonetic: "/dʌst/", pos: "noun", myanmar: "ဖုန်မှုန့်", sentence: "The room was covered in a thick layer of dust." },
-        { word: "dry particles", phonetic: "/draɪ ˈpɑː.tɪ.kəlz/", pos: "noun", myanmar: "အမှုန်အမွှားခြောက်များ", sentence: "Dry particles floated in the air stream." },
-        { word: "germs", phonetic: "/dʒɜːmz/", pos: "noun", myanmar: "ပိုးမွှားများ / ရောဂါပိုးများ", sentence: "Wash your hands to kill harmful germs." },
-        { word: "emits", phonetic: "/iˈmɪts/", pos: "verb", myanmar: "ထုတ်လွှတ်သည်", sentence: "The chimney emits heavy black smoke." },
-        { word: "enable", phonetic: "/ɪˈneɪ.bəl/", pos: "verb", myanmar: "လုပ်ဆောင်နိုင်စေသည်", sentence: "This technology enables faster communication." },
-        { word: "grind", phonetic: "/ɡraɪnd/", pos: "verb", myanmar: "ကြိတ်ေချသည်", sentence: "The mill grinds wheat into flour." },
-        { word: "flour", phonetic: "/flaʊər/", pos: "noun", myanmar: "ဂျုံမှုန့်", sentence: "Flour is essential for baking bread." },
-        { word: "ointment", phonetic: "/ˈɔɪnt.mənt/", pos: "noun", myanmar: "လိမ်းဆေးဆီ", sentence: "Apply this ointment to soothing the skin." },
-        { word: "wounds", phonetic: "/wuːndz/", pos: "noun", myanmar: "ဒဏ်ရာများ", sentence: "The doctor cleaned his open wounds." },
-        { word: "integrate", phonetic: "/ˈɪn.tɪ.ɡreɪt/", pos: "verb", myanmar: "ပေါင်းစပ်သည်", sentence: "We need to integrate new solar technologies." },
-        { word: "leading", phonetic: "/ˈliː.dɪŋ/", pos: "adj", myanmar: "ဦးဆောင်နေသော", sentence: "She is a leading expert in clean energy." },
-        { word: "moreover", phonetic: "/mɔːrˈəʊ.vər/", pos: "adv", myanmar: "ဒါ့အပြင် / ထို့ပြင်", sentence: "The price is low; moreover, quality is high." },
-        { word: "object", phonetic: "/ˈɒb.dʒɪkt/", pos: "noun", myanmar: "ဝတ္ထု / အရာဝတ္ထု", sentence: "A unidentified floating object was spotted." },
-        { word: "pollutant", phonetic: "/pəˈluː.tənt/", pos: "noun", myanmar: "ညစ်ညမ်းစေသောအရာ", sentence: "Plastic is a major ocean pollutant." },
-        { word: "powder", phonetic: "/ˈpaʊ.dər/", pos: "noun", myanmar: "အမှုန့်", sentence: "Mix the baking powder with water." },
-        { word: "dry substance", phonetic: "/draɪ ˈsʌb.stəns/", pos: "noun", myanmar: "အခြောက်ခံဒြပ်ပစ္စည်း", sentence: "Store the dry substance in an airtight container." },
-        { word: "Tumeric", phonetic: "/ˈtɜː.mər.ɪk/", pos: "noun", myanmar: "နနွင်း", sentence: "Turmeric is widely used in Asian cooking." },
-        { word: "prompt", phonetic: "/prɒmpt/", pos: "verb / adj", myanmar: "တိုက်တွန်းသည် / ချက်ချင်းပြုလုပ်သော", sentence: "Prompt action saved the patient." },
-        { word: "reject", phonetic: "/rɪˈdʒekt/", pos: "verb", myanmar: "ငြင်းပယ်သည်", sentence: "They rejected the initial offer." },
-        { word: "skeptic", phonetic: "/ˈskep.tɪk/", pos: "noun", myanmar: "သံသယရှိသူ", sentence: "Skeptics questioned the research results." },
-        { word: "Arsenic", phonetic: "/ˈɑː.sən.ɪk/", pos: "noun", myanmar: "စိမ်းစား / အဆိပ်သင့်ဓာတုဒြပ်စင်", sentence: "Arsenic is a highly toxic element." },
-        { word: "substance", phonetic: "/ˈsʌb.stəns/", pos: "noun", myanmar: "ဒြပ်ပစ္စည်း / အနှစ်သာရ", sentence: "Ice is water in a solid substance form." },
-        { word: "substantially", phonetic: "/səbˈstæn.ʃəl.i/", pos: "adv", myanmar: "သိသာထင်ရှားစွာ", sentence: "Profits increased substantially this year." },
-        { word: "Transport", phonetic: "/ˈtræn.spɔːt/", pos: "noun / verb", myanmar: "သယ်ယူပို့ဆောင်ရေး", sentence: "Public transport reduces traffic congestion." },
-        { word: "Sticky green", phonetic: "/ˈstɪk.i ɡriːn/", pos: "adj", myanmar: "စိမ်းစိုကပ်စေးသော", sentence: "Leaves had a sticky green residue." },
-        { word: "chimneys", phonetic: "/ˈtʃɪm.niz/", pos: "noun", myanmar: "မီးခိုးခေါင်းတိုင်များ", sentence: "Factory chimneys released white smoke." },
-        { word: "clue", phonetic: "/kluː/", pos: "noun", myanmar: "သဲလွန်စ", sentence: "Police found a key clue at the scene." },
-        { word: "abbreviated", phonetic: "/əˈbriː.vi.eɪ.tɪd/", pos: "adj", myanmar: "အတိုချုံ့ထားသော", sentence: "USA is the abbreviated form for the United States." },
-        { word: "crushed", phonetic: "/krʌʃt/", pos: "adj / verb", myanmar: "ကြိတ်ေချထားသော", sentence: "Add crushed ice to the cold drink." },
-        { word: "genuine", phonetic: "/ˈdʒen.ju.ɪn/", pos: "adj", myanmar: "စစ်မှန်သော", sentence: "This diamond is guaranteed genuine." },
-        { word: "fossil", phonetic: "/ˈfɒs.əl/", pos: "noun", myanmar: "ရုပ်ကြွင်း / ကျောက်ဖြစ်ရုပ်ကြွင်း", sentence: "Fossil fuels release carbon when burned." },
-        { word: "obvious", phonetic: "/ˈɒb.vi.əs/", pos: "adj", myanmar: "ထင်ရှားသော / သိသာသော", sentence: "The answer was obvious to everyone." },
-        { word: "weathering", phonetic: "/ˈweð.ər.ɪŋ/", pos: "noun", myanmar: "ရာသီဥတုကြောင့် ယိုယွင်းပျက်စီးခြင်း", sentence: "Weathering broke down rocks over centuries." },
-        { word: "captured", phonetic: "/ˈkæp.tʃəd/", pos: "adj / verb", myanmar: "ဖမ်းယူရရှိထားသော", sentence: "Carbon is captured directly from the air." },
-        { word: "embedded", phonetic: "/ɪmˈbed.ɪd/", pos: "adj", myanmar: "မြှုပ်နှံထားသော", sentence: "Microchips are embedded in the device." },
-        { word: "enhanced", phonetic: "/ɪnˈhɑːnst/", pos: "adj", myanmar: "မြှင့်တင်ထားသော", sentence: "The sound quality has been greatly enhanced." },
-        { word: "olivine", phonetic: "/ˈɒl.ɪ.viːn/", pos: "noun", myanmar: "သံလွင်ရောင် သတ္တုကျောက်", sentence: "Olivine mineral reacts naturally with carbon." },
-        { word: "exposure", phonetic: "/ɪkˈspəʊ.ʒər/", pos: "noun", myanmar: "ထိတွေ့မှု", sentence: "Prolonged sun exposure can damage skin." },
-        { word: "emissions", phonetic: "/iˈmɪʃ.ənz/", pos: "noun", myanmar: "ဓာတ်ငွေ့ ထုတ်လွှတ်မှုများ", sentence: "Electric cars produce zero tailpipe emissions." },
-        { word: "combat", phonetic: "/ˈkɒm.bæt/", pos: "verb / noun", myanmar: "တိုက်ဖျက်သည် / တိုက်ပွဲ", sentence: "New green policies help combat climate change." }
-      ]
-    };
-
-    // STATE MANAGEMENT
-    let state = {
-      currentCategory: null, // "TOEIC", "Phrasal", "E - mail", "General"
-      currentBook: null,     // 1 to 6
-      currentChapter: null,  // 1 to 30
-      currentTab: 'list',    // 'list', 'cards', 'quiz'
-      playbackSpeed: 1.0,
-      activeVocabList: [],
-      cardIndex: 0,
-      quizScore: 0,
-      quizQuestion: null
-    };
-
-    // INITIALIZATION
-    window.addEventListener('DOMContentLoaded', () => {
-      navigateToHome();
-    });
-
-    // NAVIGATION FUNCTIONS
-    function navigateToHome() {
-      state.currentCategory = null;
-      state.currentBook = null;
-      state.currentChapter = null;
-
-      document.getElementById('screen-home').classList.remove('hidden');
-      document.getElementById('screen-chapters').classList.add('hidden');
-      document.getElementById('screen-vocab').classList.add('hidden');
-      document.getElementById('quick-view-toggle').classList.add('hidden');
-
-      renderBreadcrumb();
-    }
-
-    function selectBook(bookNum) {
-      state.currentBook = bookNum;
-      state.currentCategory = null;
-
-      document.getElementById('chapter-book-title').innerText = `Book ${bookNum} Chapters`;
-      renderChapterGrid();
-
-      document.getElementById('screen-home').classList.add('hidden');
-      document.getElementById('screen-chapters').classList.remove('hidden');
-      document.getElementById('screen-vocab').classList.add('hidden');
-      document.getElementById('quick-view-toggle').classList.add('hidden');
-
-      renderBreadcrumb();
-    }
-
-    function selectChapter(chapNum) {
-      state.currentChapter = chapNum;
-      loadVocabData();
-
-      document.getElementById('screen-chapters').classList.add('hidden');
-      document.getElementById('screen-vocab').classList.remove('hidden');
-      document.getElementById('quick-view-toggle').classList.remove('hidden');
-
-      renderBreadcrumb();
-      switchTab('list');
-    }
-
-    function selectDirectCategory(categoryName) {
-      state.currentCategory = categoryName;
-      state.currentBook = null;
-      state.currentChapter = null;
-
-      loadVocabData();
-
-      document.getElementById('screen-home').classList.add('hidden');
-      document.getElementById('screen-chapters').classList.add('hidden');
-      document.getElementById('screen-vocab').classList.remove('hidden');
-      document.getElementById('quick-view-toggle').classList.remove('hidden');
-
-      renderBreadcrumb();
-      switchTab('list');
-    }
-
-    function renderBreadcrumb() {
-      const container = document.getElementById('breadcrumb');
-      let html = `<span onclick="navigateToHome()" class="cursor-pointer hover:text-indigo-600"><i class="fa-solid fa-house mr-1"></i>Home</span>`;
-
-      if (state.currentBook) {
-        html += `<i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>`;
-        if (state.currentChapter) {
-          html += `<span onclick="selectBook(${state.currentBook})" class="cursor-pointer hover:text-indigo-600">Book ${state.currentBook}</span>`;
-          html += `<i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>`;
-          html += `<span class="text-indigo-600 font-bold">Chapter ${state.currentChapter}</span>`;
-        } else {
-          html += `<span class="text-indigo-600 font-bold">Book ${state.currentBook}</span>`;
-        }
-      } else if (state.currentCategory) {
-        html += `<i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>`;
-        html += `<span class="text-indigo-600 font-bold">${state.currentCategory}</span>`;
-      }
-
-      container.innerHTML = html;
-    }
-
-    function renderChapterGrid() {
-      const grid = document.getElementById('chapter-grid');
-      let html = '';
-
-      for (let i = 1; i <= 30; i++) {
-        let isPreloaded = (state.currentBook === 4 && (i === 1 || i === 2));
-        html += `
-          <button onclick="selectChapter(${i})" class="group p-4 bg-white hover:bg-indigo-600 hover:text-white rounded-2xl border border-slate-200 shadow-sm transition flex flex-col items-center justify-center text-center relative overflow-hidden">
-            ${isPreloaded ? `<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-amber-400 rounded-full"></span>` : ''}
-            <span class="text-xs font-semibold uppercase text-slate-400 group-hover:text-indigo-200">CH</span>
-            <span class="text-xl font-black mt-0.5">${i}</span>
-          </button>
-        `;
-      }
-      grid.innerHTML = html;
-    }
-
-    // DATA STORAGE & RETRIEVAL KEY
-    function getStorageKey() {
-      if (state.currentBook && state.currentChapter) {
-        return `Book_${state.currentBook}_Ch_${state.currentChapter}`;
-      } else if (state.currentCategory) {
-        return `Cat_${state.currentCategory}`;
-      }
-      return 'default';
-    }
-
-    function loadVocabData() {
-      const key = getStorageKey();
-      let saved = localStorage.getItem(key);
-
-      if (saved) {
-        state.activeVocabList = JSON.parse(saved);
-      } else if (INITIAL_DATA[key]) {
-        state.activeVocabList = INITIAL_DATA[key];
-      } else {
-        state.activeVocabList = [];
-      }
-
-      renderVocabList();
-    }
-
-    // SPEECH ENGINE (TEXT-TO-SPEECH)
-    function setSpeed(speed) {
-      state.playbackSpeed = speed;
-      document.querySelectorAll('[id^="speed-"]').forEach(btn => {
-        btn.classList.remove('bg-indigo-500', 'text-white', 'shadow-sm');
-        btn.classList.add('text-indigo-200');
-      });
-      const activeBtn = document.getElementById(`speed-${speed.toString().replace('.', '')}`);
-      if (activeBtn) {
-        activeBtn.classList.add('bg-indigo-500', 'text-white', 'shadow-sm');
-      }
-    }
-
-    function speakWord(text) {
-      if (!('speechSynthesis' in window)) {
-        alert("Text-to-speech is not supported in this browser.");
-        return;
-      }
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      utterance.rate = state.playbackSpeed;
-      window.speechSynthesis.speak(utterance);
-    }
-
-    // RENDER LIST VIEW
-    function renderVocabList() {
-      const container = document.getElementById('vocab-cards-container');
-      document.getElementById('vocab-count-badge').innerText = `${state.activeVocabList.length} Words Loaded`;
-
-      if (state.activeVocabList.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-2 text-center py-12 bg-white rounded-3xl border border-dashed border-slate-300 p-6">
-            <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-3"></i>
-            <p class="text-slate-600 font-semibold">No vocabulary words in this chapter yet.</p>
-            <p class="text-xs text-slate-400 mt-1">Click the button below to add or batch import words.</p>
-            <button onclick="openImportModal()" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow">
-              + Add Words Now
-            </button>
-          </div>
-        `;
-        return;
-      }
-
-      let html = '';
-      state.activeVocabList.forEach((item, index) => {
-        html += `
-          <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-between">
-            <div class="flex items-start justify-between">
-              <div>
-                <div class="flex items-center space-x-2">
-                  <h3 class="text-xl font-bold text-slate-900 tracking-tight">${item.word}</h3>
-                  <button onclick="speakWord('${item.word}')" class="w-8 h-8 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center transition">
-                    <i class="fa-solid fa-volume-high text-xs"></i>
-                  </button>
-                </div>
-                ${item.phonetic ? `<p class="text-xs font-mono text-slate-400 mt-0.5">${item.phonetic}</p>` : ''}
-              </div>
-              <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold uppercase tracking-wider rounded-md">
-                ${item.pos || 'vocab'}
-              </span>
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-slate-100">
-              <p class="myanmar-text text-lg font-bold text-indigo-950">${item.myanmar || '—'}</p>
-              ${item.sentence ? `<p class="text-xs text-slate-500 italic mt-1 font-serif">"${item.sentence}"</p>` : ''}
-            </div>
-          </div>
-        `;
-      });
-
-      container.innerHTML = html;
-    }
-
-    function filterVocab() {
-      const query = document.getElementById('search-input').value.toLowerCase();
-      const cards = document.getElementById('vocab-cards-container').children;
-
-      Array.from(cards).forEach(card => {
-        const text = card.innerText.toLowerCase();
-        if (text.includes(query)) {
-          card.style.display = "flex";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-
-    // TAB SWITCHING
-    function switchTab(tabName) {
-      state.currentTab = tabName;
-      ['list', 'cards', 'quiz'].forEach(t => {
-        document.getElementById(`view-${t}`).classList.add('hidden');
-        const btn = document.getElementById(`tab-btn-${t}`);
-        btn.classList.remove('bg-indigo-50', 'text-indigo-600', 'border-indigo-200', 'shadow-sm');
-        btn.classList.add('text-slate-600', 'border-transparent');
-      });
-
-      document.getElementById(`view-${tabName}`).classList.remove('hidden');
-      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
-      activeBtn.classList.add('bg-indigo-50', 'text-indigo-600', 'border-indigo-200', 'shadow-sm');
-
-      if (tabName === 'cards') initFlashcards();
-      if (tabName === 'quiz') initQuiz();
-    }
-
-    // FLASHCARD LOGIC
-    function initFlashcards() {
-      state.cardIndex = 0;
-      updateFlashcardUI();
-    }
-
-    function flipCard() {
-      const fc = document.getElementById('flashcard');
-      fc.classList.toggle('rotate-y-180');
-    }
-
-    function updateFlashcardUI() {
-      const card = document.getElementById('flashcard');
-      card.classList.remove('rotate-y-180');
-
-      if (state.activeVocabList.length === 0) {
-        document.getElementById('card-word-front').innerText = "No Words";
-        document.getElementById('card-myanmar-back').innerText = "No Data";
-        return;
-      }
-
-      const current = state.activeVocabList[state.cardIndex];
-      document.getElementById('card-pos-front').innerText = current.pos || 'WORD';
-      document.getElementById('card-word-front').innerText = current.word;
-      document.getElementById('card-phonetic-front').innerText = current.phonetic || '';
-
-      document.getElementById('card-pos-back').innerText = current.pos || 'MEANING';
-      document.getElementById('card-myanmar-back').innerText = current.myanmar || '—';
-      document.getElementById('card-sentence-back').innerText = current.sentence ? `"${current.sentence}"` : '';
-
-      document.getElementById('card-counter').innerText = `${state.cardIndex + 1} / ${state.activeVocabList.length}`;
-    }
-
-    function nextCard() {
-      if (state.activeVocabList.length === 0) return;
-      state.cardIndex = (state.cardIndex + 1) % state.activeVocabList.length;
-      updateFlashcardUI();
-    }
-
-    function prevCard() {
-      if (state.activeVocabList.length === 0) return;
-      state.cardIndex = (state.cardIndex - 1 + state.activeVocabList.length) % state.activeVocabList.length;
-      updateFlashcardUI();
-    }
-
-    function speakCurrentCard() {
-      if (state.activeVocabList.length > 0) {
-        speakWord(state.activeVocabList[state.cardIndex].word);
-      }
-    }
-
-    // QUIZ PRACTICE LOGIC
-    function initQuiz() {
-      state.quizScore = 0;
-      document.getElementById('quiz-score').innerText = `Score: ${state.quizScore}`;
-      nextQuizQuestion();
-    }
-
-    function nextQuizQuestion() {
-      if (state.activeVocabList.length === 0) {
-        document.getElementById('quiz-word').innerText = "No Data";
-        document.getElementById('quiz-options').innerHTML = `<p class="text-center text-slate-400 py-4">Please add vocabulary to start quiz.</p>`;
-        return;
-      }
-
-      const randomIndex = Math.floor(Math.random() * state.activeVocabList.length);
-      const target = state.activeVocabList[randomIndex];
-      state.quizQuestion = target;
-
-      document.getElementById('quiz-word').innerText = target.word;
-      document.getElementById('quiz-phonetic').innerText = target.phonetic || '';
-
-      // Generate 4 distractor options
-      let options = [target];
-      while (options.length < Math.min(4, state.activeVocabList.length)) {
-        let rand = state.activeVocabList[Math.floor(Math.random() * state.activeVocabList.length)];
-        if (!options.find(o => o.word === rand.word)) {
-          options.push(rand);
-        }
-      }
-      options.sort(() => Math.random() - 0.5);
-
-      const optionsContainer = document.getElementById('quiz-options');
-      optionsContainer.innerHTML = '';
-
-      options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = "w-full p-4 bg-slate-50 hover:bg-indigo-50 border border-slate-200 rounded-2xl text-left myanmar-text text-slate-800 font-bold transition flex items-center justify-between";
-        btn.innerHTML = `<span>${opt.myanmar || opt.word}</span> <i class="fa-regular fa-circle text-slate-300"></i>`;
-        btn.onclick = () => checkQuizAnswer(opt, target, btn);
-        optionsContainer.appendChild(btn);
-      });
-    }
-
-    function checkQuizAnswer(selected, correct, btnElement) {
-      const allButtons = document.getElementById('quiz-options').children;
-      Array.from(allButtons).forEach(b => b.disabled = true);
-
-      if (selected.word === correct.word) {
-        btnElement.classList.remove('bg-slate-50', 'border-slate-200');
-        btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
-        btnElement.querySelector('i').className = "fa-solid fa-circle-check text-white";
-        state.quizScore += 10;
-        document.getElementById('quiz-score').innerText = `Score: ${state.quizScore}`;
-      } else {
-        btnElement.classList.remove('bg-slate-50', 'border-slate-200');
-        btnElement.classList.add('bg-rose-500', 'text-white', 'border-rose-600');
-        btnElement.querySelector('i').className = "fa-solid fa-circle-xmark text-white";
-      }
-    }
-
-    function speakQuizWord() {
-      if (state.quizQuestion) speakWord(state.quizQuestion.word);
-    }
-
-    // IMPORT / ADD MODAL
-    function openImportModal() {
-      document.getElementById('import-modal').classList.remove('hidden');
-    }
-
-    function closeImportModal() {
-      document.getElementById('import-modal').classList.add('hidden');
-      document.getElementById('import-text').value = '';
-    }
-
-    function processImport() {
-      const rawText = document.getElementById('import-text').value.trim();
-      if (!rawText) return;
-
-      const items = rawText.split(/[\n,]+/).map(i => i.trim()).filter(i => i.length > 0);
-      const newEntries = items.map(w => ({
-        word: w,
-        phonetic: '',
-        pos: 'word',
-        myanmar: 'ဆောင်းပါး / စကားလုံး',
-        sentence: ''
-      }));
-
-      state.activeVocabList = [...state.activeVocabList, ...newEntries];
-      localStorage.setItem(getStorageKey(), JSON.stringify(state.activeVocabList));
-
-      closeImportModal();
-      renderVocabList();
-    }
-  </script>
-</body>
-</html>
+        <!-- Row 2: Book 4,
