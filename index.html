@@ -135,4 +135,828 @@
           </div>
         </button>
 
-        <!-- Row 2: Book 4,
+        <!-- Row 2: Book 4, Book 5, Book 6 -->
+        <button onclick="selectBook(4)" class="group relative bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-800 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
+          <div class="absolute -top-2 -right-2 bg-amber-400 text-slate-900 font-bold text-[10px] uppercase px-2.5 py-0.5 rounded-full shadow-sm">Preloaded</div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-200">Series</span>
+            <h3 class="text-2xl font-black mt-0.5">Book 4</h3>
+            <p class="text-xs text-indigo-100 mt-1">30 Chapters (Ch 1 & Ch 2 Ready)</p>
+          </div>
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+        </button>
+
+        <button onclick="selectBook(5)" class="group bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-200">Series</span>
+            <h3 class="text-2xl font-black mt-0.5">Book 5</h3>
+            <p class="text-xs text-indigo-100 mt-1">30 Chapters</p>
+          </div>
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+            <i class="fa-solid fa-book"></i>
+          </div>
+        </button>
+
+        <button onclick="selectBook(6)" class="group bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-200">Series</span>
+            <h3 class="text-2xl font-black mt-0.5">Book 6</h3>
+            <p class="text-xs text-indigo-100 mt-1">30 Chapters</p>
+          </div>
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+            <i class="fa-solid fa-book"></i>
+          </div>
+        </button>
+
+        <!-- Row 3: TOEIC, Phrasal, E - mail -->
+        <button onclick="selectDirectCategory('TOEIC')" class="group bg-gradient-to-br from-sky-500 to-blue-700 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-100">Specialized</span>
+            <h3 class="text-2xl font-black mt-0.5">TOEIC</h3>
+            <p class="text-xs text-sky-100 mt-1">Exam & Professional</p>
+          </div>
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+        </button>
+
+        <button onclick="selectDirectCategory('Phrasal')" class="group bg-gradient-to-br from-emerald-500 to-teal-700 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-100">Expressions</span>
+            <h3 class="text-2xl font-black mt-0.5">Phrasal</h3>
+            <p class="text-xs text-emerald-100 mt-1">Verbs & Idioms</p>
+          </div>
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+        </button>
+
+        <button onclick="selectDirectCategory('E - mail')" class="group bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-100">Business</span>
+            <h3 class="text-2xl font-black mt-0.5">E - mail</h3>
+            <p class="text-xs text-amber-100 mt-1">Correspondence Terms</p>
+          </div>
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+        </button>
+
+        <!-- Row 4: General (Centered) -->
+        <div class="md:col-span-3 flex justify-center mt-1">
+          <button onclick="selectDirectCategory('General')" class="group w-full md:w-1/3 bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 text-left flex items-center justify-between relative">
+            <div class="absolute -top-2 -right-2 bg-emerald-400 text-slate-900 font-bold text-[10px] uppercase px-2.5 py-0.5 rounded-full shadow-sm">108 PDF Words</div>
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-100">Advanced Level</span>
+              <h3 class="text-2xl font-black mt-0.5">General</h3>
+              <p class="text-xs text-purple-100 mt-1">108 Vocab Items Loaded</p>
+            </div>
+            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. CHAPTER SELECTOR (For Books 1 to 6) -->
+    <div id="screen-chapters" class="hidden space-y-6">
+      <div class="flex items-center justify-between bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div>
+          <h2 id="chapter-book-title" class="text-2xl font-black text-slate-800">Book Chapters</h2>
+          <p class="text-slate-500 text-sm mt-1">Select a chapter from 1 to 30 to open vocabulary.</p>
+        </div>
+        <button onclick="navigateToHome()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
+          <i class="fa-solid fa-arrow-left mr-2"></i>Back Home
+        </button>
+      </div>
+
+      <div id="chapter-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3">
+        <!-- JS Populates 30 Chapter Cards -->
+      </div>
+    </div>
+
+    <!-- 3. VOCABULARY VIEW SCREEN -->
+    <div id="screen-vocab" class="hidden space-y-6">
+
+      <!-- Action Bar: Search & Import -->
+      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- Search Input -->
+        <div class="relative w-full md:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
+          <input type="text" id="search-input" onkeyup="filterVocab()" placeholder="Search word or Myanmar meaning..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+        </div>
+
+        <!-- Import Button -->
+        <button onclick="openImportModal()" class="w-full md:w-auto px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition shadow-sm flex items-center justify-center">
+          <i class="fa-solid fa-plus mr-1.5"></i>Add / Import Words
+        </button>
+      </div>
+
+      <!-- VIEW TAB 1: LIST VIEW -->
+      <div id="view-list" class="space-y-4">
+        <div id="vocab-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- JS renders word cards -->
+        </div>
+      </div>
+
+      <!-- VIEW TAB 2: FLASHCARDS VIEW -->
+      <div id="view-cards" class="hidden flex flex-col items-center justify-center py-6">
+        <div class="w-full max-w-lg perspective-1000">
+          <div id="flashcard" onclick="flipCard()" class="relative w-full h-80 rounded-3xl shadow-xl border border-indigo-100 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white cursor-pointer transform-style-3d transition-transform duration-500 flex flex-col justify-between p-8">
+            
+            <!-- FRONT SIDE -->
+            <div id="flashcard-front" class="absolute inset-0 p-8 flex flex-col justify-between backface-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-3xl">
+              <div class="flex justify-between items-center">
+                <span class="text-xs uppercase tracking-widest text-indigo-200 font-bold" id="card-pos-front">WORD</span>
+                <button onclick="event.stopPropagation(); speakCurrentCard()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+              </div>
+              <div class="text-center my-auto">
+                <h2 id="card-word-front" class="text-3xl font-black tracking-wide">--</h2>
+                <p id="card-phonetic-front" class="text-xs font-mono text-indigo-200 mt-2">/--/</p>
+              </div>
+              <div class="text-center text-xs text-indigo-200 font-medium">
+                Tap card to reveal Myanmar meaning <i class="fa-solid fa-rotate text-amber-300 ml-1"></i>
+              </div>
+            </div>
+
+            <!-- BACK SIDE -->
+            <div id="flashcard-back" class="absolute inset-0 p-8 flex flex-col justify-between backface-hidden rotate-y-180 bg-white text-slate-800 rounded-3xl border-2 border-indigo-500">
+              <div class="flex justify-between items-center">
+                <span class="text-xs uppercase tracking-widest text-indigo-600 font-bold" id="card-pos-back">TRANSLATION</span>
+                <button onclick="event.stopPropagation(); speakCurrentCard()" class="w-10 h-10 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center transition">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+              </div>
+              <div class="text-center my-auto">
+                <h3 id="card-myanmar-back" class="myanmar-text text-2xl font-extrabold text-indigo-950">--</h3>
+                <p id="card-sentence-back" class="text-xs text-slate-500 italic mt-3 max-w-sm mx-auto">"--"</p>
+              </div>
+              <div class="text-center text-xs text-slate-400 font-medium">
+                Tap card to see English word
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Navigation Controls for Cards -->
+        <div class="flex items-center space-x-6 mt-8">
+          <button onclick="prevCard()" class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow hover:bg-slate-50 text-slate-700 flex items-center justify-center text-lg transition">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <span id="card-counter" class="text-sm font-bold text-slate-600">1 / 1</span>
+          <button onclick="nextCard()" class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow hover:bg-slate-50 text-slate-700 flex items-center justify-center text-lg transition">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW TAB 3: QUIZ PRACTICE -->
+      <div id="view-quiz" class="hidden max-w-xl mx-auto py-4">
+        <div class="bg-white rounded-3xl p-8 shadow-md border border-slate-200 space-y-6">
+          <div class="flex items-center justify-between border-b pb-4 border-slate-100">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Quiz Practice</span>
+              <h3 class="text-lg font-extrabold text-slate-800">Select correct Myanmar meaning</h3>
+            </div>
+            <span id="quiz-score" class="px-3 py-1 bg-emerald-50 text-emerald-700 font-bold text-xs rounded-full border border-emerald-200">
+              Score: 0
+            </span>
+          </div>
+
+          <div class="text-center py-4">
+            <div class="flex items-center justify-center space-x-3">
+              <h2 id="quiz-word" class="text-3xl font-black text-slate-900">--</h2>
+              <button onclick="speakQuizWord()" class="w-10 h-10 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center transition">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <p id="quiz-phonetic" class="text-xs font-mono text-slate-400 mt-1">/--/</p>
+          </div>
+
+          <!-- Options -->
+          <div id="quiz-options" class="space-y-3">
+            <!-- JS Populates options -->
+          </div>
+
+          <div class="pt-2 flex justify-end">
+            <button onclick="nextQuizQuestion()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition shadow-md">
+              Next Question <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ADD / IMPORT MODAL -->
+  <div id="import-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 space-y-5">
+      <div class="flex justify-between items-center border-b pb-3 border-slate-100">
+        <h3 class="text-lg font-bold text-slate-800">Add / Import Vocabulary Words</h3>
+        <button onclick="closeImportModal()" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-500">
+        Enter words separated by commas or line breaks:
+      </p>
+
+      <textarea id="import-text" rows="6" placeholder="Paste English words here..." class="w-full p-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"></textarea>
+
+      <div class="flex justify-end space-x-3">
+        <button onclick="closeImportModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
+          Cancel
+        </button>
+        <button onclick="processImport()" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition shadow">
+          Import Words
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // PRELOADED DATASETS FOR BOOK 4 CHAPTER 1 & 2 AND GENERAL (PDF CONTENT)
+    const INITIAL_DATA = {
+      "Book_4_Ch_1": [
+        { word: "accountable", phonetic: "/əˈkaʊn.tə.bəl/", pos: "adj", myanmar: "တာဝန်ယူမှုရှိသော / တာဝန်ခံနိုင်သော", sentence: "Ministers must be held accountable to Parliament." },
+        { word: "addictive", phonetic: "/əˈdɪk.tɪv/", pos: "adj", myanmar: "စွဲလမ်းစေသော", sentence: "Tobacco is highly addictive." },
+        { word: "agenda", phonetic: "/əˈdʒen.də/", pos: "noun", myanmar: "အစီအစဉ် / ရည်ရွယ်ချက်", sentence: "The next item on the agenda is the budget." },
+        { word: "coin", phonetic: "/kɔɪn/", pos: "verb", myanmar: "စကားလုံးသစ် တီထွင်သည်", sentence: "The term was coined by a scientist in 1980." },
+        { word: "correlate", phonetic: "/ˈkɒr.ə.leɪt/", pos: "verb", myanmar: "ဆက်စပ်မှုရှိသည်", sentence: "Stress and illness often correlate closely." },
+        { word: "depression", phonetic: "/dɪˈpreʃ.ən/", pos: "noun", myanmar: "စိတ်ဓာတ်ကျခြင်း", sentence: "Regular exercise can help relieve depression." },
+        { word: "digital", phonetic: "/ˈdɪdʒ.ɪ.təl/", pos: "adj", myanmar: "ဒစ်ဂျစ်တယ် / နည်းပညာသုံး", sentence: "We live in a fast-paced digital age." },
+        { word: "importance", phonetic: "/ɪmˈpɔː.təns/", pos: "noun", myanmar: "အရေးပါမှု / အရေးကြီးမှု", sentence: "Education is of paramount importance." },
+        { word: "keyboard", phonetic: "/ˈkiː.bɔːd/", pos: "noun", myanmar: "ကီးဘုတ် / စာရိုက်ခလုတ်ခုံ", sentence: "He typed quickly on his computer keyboard." },
+        { word: "loneliness", phonetic: "/ˈləʊn.li.nəs/", pos: "noun", myanmar: "အထီးကျန်ခြင်း", sentence: "Loneliness can affect a person's mental health." },
+        { word: "escape", phonetic: "/ɪˈskeɪp/", pos: "verb", myanmar: "ထွက်ပြေးသည် / လွတ်မြောက်သည်", sentence: "They managed to escape from the burning house." },
+        { word: "media", phonetic: "/ˈmiː.di.ə/", pos: "noun", myanmar: "မီဒီယာ / သတင်းမီဒီယာ", sentence: "The story attracted widespread media attention." },
+        { word: "platform", phonetic: "/ˈplæt.fɔːm/", pos: "noun", myanmar: "ပလပ်ဖောင်း / ကွန်ရက်စနစ်", sentence: "Social media platforms connect millions of people." },
+        { word: "poor", phonetic: "/pɔːr/", pos: "adj", myanmar: "ဆင်းရဲသော / ညံ့ဖျင်းသော", sentence: "Many poor families live in rural areas." },
+        { word: "sidework", phonetic: "/ˈsaɪd.wɜːk/", pos: "noun", myanmar: "ဘေးထွက်အလုပ် / အပိုအလုပ်", sentence: "He earns extra money through sidework." },
+        { word: "presence", phonetic: "/ˈprez.əns/", pos: "noun", myanmar: "ရှိနေခြင်း / တည်ရှိမှု", sentence: "Her calm presence brought reassurance." },
+        { word: "harmful", phonetic: "/ˈhɑːm.fəl/", pos: "adj", myanmar: "ဘေးအန္တရာယ်ရှိသော / ထိခိုက်စေသော", sentence: "Smoking is harmful to your health." },
+        { word: "unpleasant", phonetic: "/ʌnˈplez.ənt/", pos: "adj", myanmar: "မနှစ်မြို့ဖွယ် / စိတ်တိုင်းမကျဖွယ်", sentence: "There was an unpleasant smell in the room." },
+        { word: "subject", phonetic: "/ˈsʌb.dʒekt/", pos: "noun", myanmar: "အကြောင်းအရာ / သင်ခန်းစာ", sentence: "Maths is my favorite subject." },
+        { word: "surge", phonetic: "/sɜːdʒ/", pos: "noun", myanmar: "ရုတ်တရက် မြင့်တက်လာခြင်း", sentence: "There was a sudden surge in online demand." },
+        { word: "all at once", phonetic: "/ɔːl æt wʌns/", pos: "phrase", myanmar: "တစ်ပြိုင်နက်တည်း / ရုတ်တရက်", sentence: "All at once, the lights went out." },
+        { word: "target", phonetic: "/ˈtɑː.ɡɪt/", pos: "noun", myanmar: "ပစ်မှတ် / အဓိကဦးတည်ချက်", sentence: "We reached our annual sales target." },
+        { word: "trend", phonetic: "/trend/", pos: "noun", myanmar: "ခေတ်ရေစီးကြောင်း / အလားအလာ", sentence: "Current market trends look promising." },
+        { word: "tendency", phonetic: "/ˈten.dəns.i/", pos: "noun", myanmar: "အလေ့အထ / ယိမ်းယိုင်မှု", sentence: "He has a tendency to speak too fast." },
+        { word: "validate", phonetic: "/ˈvæl.ɪ.deɪt/", pos: "verb", myanmar: "အတည်ပြုသည် / မှန်ကန်ကြောင်းသက်သေပြသည်", sentence: "The tests validated our hypothesis." },
+        { word: "reveals", phonetic: "/rɪˈviːlz/", pos: "verb", myanmar: "ဖော်ပြသည် / ဗျာဒိတ်ပေးသည်", sentence: "The research reveals a clear pattern." },
+        { word: "tobacco", phonetic: "/təˈbæk.əʊ/", pos: "noun", myanmar: "ဆေးရွက်ကြီး", sentence: "Tobacco sales have decreased." },
+        { word: "escapism", phonetic: "/ɪˈskeɪp.ɪ.zəm/", pos: "noun", myanmar: "အမှန်တရားမှ ရှောင်လွှဲလိုမှု", sentence: "Reading novels was her form of escapism." },
+        { word: "substances", phonetic: "/ˈsʌb.stəns.ɪz/", pos: "noun", myanmar: "မူးယစ်ဆေးဝါး / ဒြပ်ပစ္စည်းများ", sentence: "Dangerous chemical substances were found." },
+        { word: "selves", phonetic: "/selvz/", pos: "noun", myanmar: "မိမိတို့ကိုယ်တိုင်", sentence: "They felt like their true selves again." },
+        { word: "end up", phonetic: "/end ʌp/", pos: "verb", myanmar: "အဆုံးသတ်သွားသည်", sentence: "If you continue this way, you will end up lost." },
+        { word: "trap", phonetic: "/træp/", pos: "noun", myanmar: "ထောင်ချောက် / ဂျော့", sentence: "They were caught in a financial trap." },
+        { word: "symptoms", phonetic: "/ˈsɪmp.təmz/", pos: "noun", myanmar: "ရောဂါလက္ခဏာများ", sentence: "Fever is a common symptom of flu." },
+        { word: "extreme", phonetic: "/ɪkˈstriːm/", pos: "adj", myanmar: "လွန်ကဲသော / အစွန်းရောက်သော", sentence: "Extreme weather conditions caused delays." },
+        { word: "apparent", phonetic: "/əˈpær.ənt/", pos: "adj", myanmar: "ထင်ရှားသော / ပေါ်လွင်သော", sentence: "Her joy was apparent to everyone." }
+      ],
+      "Book_4_Ch_2": [
+        { word: "carbon", phonetic: "/ˈkɑː.bən/", pos: "noun", myanmar: "ကာဗွန်", sentence: "Carbon is the basis of all organic life." },
+        { word: "carbon dioxide", phonetic: "/ˈkɑː.bən daɪˈɒk.saɪd/", pos: "noun", myanmar: "ကာဗွန်ဒိုင်အောက်ဆိုက်ဓာတ်ငွေ့", sentence: "Trees absorb carbon dioxide from the air." },
+        { word: "coal powder", phonetic: "/kəʊl ˈpaʊ.dər/", pos: "noun", myanmar: "ကျောက်မီးသွေးမှုန့်", sentence: "Coal powder is used in power generation." },
+        { word: "dust", phonetic: "/dʌst/", pos: "noun", myanmar: "ဖုန်မှုန့်", sentence: "The room was covered in a thick layer of dust." },
+        { word: "dry particles", phonetic: "/draɪ ˈpɑː.tɪ.kəlz/", pos: "noun", myanmar: "အမှုန်အမွှားခြောက်များ", sentence: "Dry particles floated in the air stream." },
+        { word: "germs", phonetic: "/dʒɜːmz/", pos: "noun", myanmar: "ပိုးမွှားများ / ရောဂါပိုးများ", sentence: "Wash your hands to kill harmful germs." },
+        { word: "emits", phonetic: "/iˈmɪts/", pos: "verb", myanmar: "ထုတ်လွှတ်သည်", sentence: "The chimney emits heavy black smoke." },
+        { word: "enable", phonetic: "/ɪˈneɪ.bəl/", pos: "verb", myanmar: "လုပ်ဆောင်နိုင်စေသည်", sentence: "This technology enables faster communication." },
+        { word: "grind", phonetic: "/ɡraɪnd/", pos: "verb", myanmar: "ကြိတ်ေချသည်", sentence: "The mill grinds wheat into flour." },
+        { word: "flour", phonetic: "/flaʊər/", pos: "noun", myanmar: "ဂျုံမှုန့်", sentence: "Flour is essential for baking bread." },
+        { word: "ointment", phonetic: "/ˈɔɪnt.mənt/", pos: "noun", myanmar: "လိမ်းဆေးဆီ", sentence: "Apply this ointment to soothing the skin." },
+        { word: "wounds", phonetic: "/wuːndz/", pos: "noun", myanmar: "ဒဏ်ရာများ", sentence: "The doctor cleaned his open wounds." },
+        { word: "integrate", phonetic: "/ˈɪn.tɪ.ɡreɪt/", pos: "verb", myanmar: "ပေါင်းစပ်သည်", sentence: "We need to integrate new solar technologies." },
+        { word: "leading", phonetic: "/ˈliː.dɪŋ/", pos: "adj", myanmar: "ဦးဆောင်နေသော", sentence: "She is a leading expert in clean energy." },
+        { word: "moreover", phonetic: "/mɔːrˈəʊ.vər/", pos: "adv", myanmar: "ဒါ့အပြင် / ထို့ပြင်", sentence: "The price is low; moreover, quality is high." },
+        { word: "object", phonetic: "/ˈɒb.dʒɪkt/", pos: "noun", myanmar: "ဝတ္ထု / အရာဝတ္ထု", sentence: "An unidentified floating object was spotted." },
+        { word: "pollutant", phonetic: "/pəˈluː.tənt/", pos: "noun", myanmar: "ညစ်ညမ်းစေသောအရာ", sentence: "Plastic is a major ocean pollutant." },
+        { word: "powder", phonetic: "/ˈpaʊ.dər/", pos: "noun", myanmar: "အမှုန့်", sentence: "Mix the baking powder with water." },
+        { word: "dry substance", phonetic: "/draɪ ˈsʌb.stəns/", pos: "noun", myanmar: "အခြောက်ခံဒြပ်ပစ္စည်း", sentence: "Store the dry substance in an airtight container." },
+        { word: "Tumeric", phonetic: "/ˈtɜː.mər.ɪk/", pos: "noun", myanmar: "နနွင်း", sentence: "Turmeric is widely used in Asian cooking." },
+        { word: "prompt", phonetic: "/prɒmpt/", pos: "verb / adj", myanmar: "တိုက်တွန်းသည် / ချက်ချင်းပြုလုပ်သော", sentence: "Prompt action saved the patient." },
+        { word: "reject", phonetic: "/rɪˈdʒekt/", pos: "verb", myanmar: "ငြင်းပယ်သည်", sentence: "They rejected the initial offer." },
+        { word: "skeptic", phonetic: "/ˈskep.tɪk/", pos: "noun", myanmar: "သံသယရှိသူ", sentence: "Skeptics questioned the research results." },
+        { word: "Arsenic", phonetic: "/ˈɑː.sən.ɪk/", pos: "noun", myanmar: "စိမ်းစား / အဆိပ်သင့်ဓာတုဒြပ်စင်", sentence: "Arsenic is a highly toxic element." },
+        { word: "substance", phonetic: "/ˈsʌb.stəns/", pos: "noun", myanmar: "ဒြပ်ပစ္စည်း / အနှစ်သာရ", sentence: "Ice is water in a solid substance form." },
+        { word: "substantially", phonetic: "/səbˈstæn.ʃəl.i/", pos: "adv", myanmar: "သိသာထင်ရှားစွာ", sentence: "Profits increased substantially this year." },
+        { word: "Transport", phonetic: "/ˈtræn.spɔːt/", pos: "noun / verb", myanmar: "သယ်ယူပို့ဆောင်ရေး", sentence: "Public transport reduces traffic congestion." },
+        { word: "Sticky green", phonetic: "/ˈstɪk.i ɡriːn/", pos: "adj", myanmar: "စိမ်းစိုကပ်စေးသော", sentence: "Leaves had a sticky green residue." },
+        { word: "chimneys", phonetic: "/ˈtʃɪm.niz/", pos: "noun", myanmar: "မီးခိုးခေါင်းတိုင်များ", sentence: "Factory chimneys released white smoke." },
+        { word: "clue", phonetic: "/kluː/", pos: "noun", myanmar: "သဲလွန်စ", sentence: "Police found a key clue at the scene." },
+        { word: "abbreviated", phonetic: "/əˈbriː.vi.eɪ.tɪd/", pos: "adj", myanmar: "အတိုချုံ့ထားသော", sentence: "USA is the abbreviated form for the United States." },
+        { word: "crushed", phonetic: "/krʌʃt/", pos: "adj / verb", myanmar: "ကြိတ်ေချထားသော", sentence: "Add crushed ice to the cold drink." },
+        { word: "genuine", phonetic: "/ˈdʒen.ju.ɪn/", pos: "adj", myanmar: "စစ်မှန်သော", sentence: "This diamond is guaranteed genuine." },
+        { word: "fossil", phonetic: "/ˈfɒs.əl/", pos: "noun", myanmar: "ရုပ်ကြွင်း / ကျောက်ဖြစ်ရုပ်ကြွင်း", sentence: "Fossil fuels release carbon when burned." },
+        { word: "obvious", phonetic: "/ˈɒb.vi.əs/", pos: "adj", myanmar: "ထင်ရှားသော / သိသာသော", sentence: "The answer was obvious to everyone." },
+        { word: "weathering", phonetic: "/ˈweð.ər.ɪŋ/", pos: "noun", myanmar: "ရာသီဥတုကြောင့် ယိုယွင်းပျက်စီးခြင်း", sentence: "Weathering broke down rocks over centuries." },
+        { word: "captured", phonetic: "/ˈkæp.tʃəd/", pos: "adj / verb", myanmar: "ဖမ်းယူရရှိထားသော", sentence: "Carbon is captured directly from the air." },
+        { word: "embedded", phonetic: "/ɪmˈbed.ɪd/", pos: "adj", myanmar: "မြှုပ်နှံထားသော", sentence: "Microchips are embedded in the device." },
+        { word: "enhanced", phonetic: "/ɪnˈhɑːnst/", pos: "adj", myanmar: "မြှင့်တင်ထားသော", sentence: "The sound quality has been greatly enhanced." },
+        { word: "olivine", phonetic: "/ˈɒl.ɪ.viːn/", pos: "noun", myanmar: "သံလွင်ရောင် သတ္တုကျောက်", sentence: "Olivine mineral reacts naturally with carbon." },
+        { word: "exposure", phonetic: "/ɪkˈspəʊ.ʒər/", pos: "noun", myanmar: "ထိတွေ့မှု", sentence: "Prolonged sun exposure can damage skin." },
+        { word: "emissions", phonetic: "/iˈmɪʃ.ənz/", pos: "noun", myanmar: "ဓာတ်ငွေ့ ထုတ်လွှတ်မှုများ", sentence: "Electric cars produce zero tailpipe emissions." },
+        { word: "combat", phonetic: "/ˈkɒm.bæt/", pos: "verb / noun", myanmar: "တိုက်ဖျက်သည် / တိုက်ပွဲ", sentence: "New green policies help combat climate change." }
+      ],
+      "Cat_General": [
+        { word: "A shred of", phonetic: "/ə ʃred ɒv/", pos: "phrase", myanmar: "အနည်းငယ်မျှ / အစအနမျှ", sentence: "There isn't a shred of evidence to support his claim during the meeting." },
+        { word: "Abate", phonetic: "/əˈbeɪt/", pos: "verb", myanmar: "လျော့နည်းသွားသည် / သက်သာသွားသည်", sentence: "The heavy rain began to abate, allowing the outdoor event to continue." },
+        { word: "Abbreviate", phonetic: "/əˈbriː.vi.eɪt/", pos: "verb", myanmar: "အတိုချုံးသည် / အတိုကောက်ရေးသည်", sentence: "The speaker had to abbreviate his presentation due to the time limit." },
+        { word: "Abbreviate A as B", phonetic: "/əˈbriː.vi.eɪt ... æz .../", pos: "phrase", myanmar: "A ကို B အဖြစ် အတိုကောက်ပြုလုပ်သည်", sentence: "We usually abbreviate 'Assistant' as 'Asst.' in business memos." },
+        { word: "Abbreviate A to B", phonetic: "/əˈbriː.vi.eɪt ... tuː .../", pos: "phrase", myanmar: "A ကို B အထိ အတိုချုံးလိုက်သည်", sentence: "I had to abbreviate the 10-page document to 5 pages." },
+        { word: "Abbreviation", phonetic: "/əˌbriː.viˈeɪ.ʃən/", pos: "noun", myanmar: "အတိုကောက်စကားလုံး", sentence: "'CEO' is a common abbreviation for Chief Executive Officer." },
+        { word: "Abide by", phonetic: "/əˈbaɪd baɪ/", pos: "verb", myanmar: "လိုက်နာသည် / စည်းကမ်းစောင့်ထိန်းသည်", sentence: "All employees must abide by the company's safety regulations." },
+        { word: "Abolish", phonetic: "/əˈbɒl.ɪʃ/", pos: "verb", myanmar: "ပယ်ဖျက်သည် / ဖျက်သိမ်းသည်", sentence: "The government decided to abolish the tax on luxury imported goods." },
+        { word: "Abolition", phonetic: "/ˌæb.əˈlɪʃ.ən/", pos: "noun", myanmar: "ဖျက်သိမ်းခြင်း / ပယ်ဖျက်ခြင်း", sentence: "The abolition of the internship program was a surprise to everyone." },
+        { word: "Abound", phonetic: "/əˈbaʊnd/", pos: "verb", myanmar: "ပေါများသည် / ပြည့်နှက်နေသည်", sentence: "Opportunities for career growth abound in this tech company." },
+        { word: "Abridge", phonetic: "/əˈbrɪdʒ/", pos: "verb", myanmar: "အတိုချုံးသည် / ဖြတ်တောက်သည်", sentence: "The editor decided to abridge the novel for the younger audience." },
+        { word: "Abridged", phonetic: "/əˈbrɪdʒd/", pos: "adj", myanmar: "အတိုချုံးထားသော", sentence: "I read the abridged version of the report because I was in a hurry." },
+        { word: "Abrupt", phonetic: "/əˈbrʌpt/", pos: "adj", myanmar: "ရုတ်တရက်ဖြစ်သော / လောလောလတ်လတ်", sentence: "The meeting came to an abrupt end when the power went out." },
+        { word: "Abruptly", phonetic: "/əˈbrʌpt.li/", pos: "adv", myanmar: "ရုတ်တရက် / ဝုန်းဒိုင်းကြဲ", sentence: "The bus stopped abruptly to avoid an accident." },
+        { word: "Abundance", phonetic: "/əˈbʌn.dəns/", pos: "noun", myanmar: "ပေါများခြင်း / ကြွယ်ဝခြင်း", sentence: "There is an abundance of natural resources in this region." },
+        { word: "Abundant", phonetic: "/əˈbʌn.dənt/", pos: "adj", myanmar: "ပေါများသော / ကြွယ်ဝသော", sentence: "We have abundant evidence to prove that the product is safe." },
+        { word: "Accelerate", phonetic: "/əkˈsel.ə.reɪt/", pos: "verb", myanmar: "အရှိန်မြှင့်တင်သည် / ပိုမြန်စေသည်", sentence: "We need to accelerate the recruitment process to fill the vacancies." },
+        { word: "Acceleration", phonetic: "/əkˌsel.əˈreɪ.ʃən/", pos: "noun", myanmar: "အရှိန်မြှင့်တင်ခြင်း / မြန်ဆန်လာခြင်း", sentence: "There has been a rapid acceleration in online sales this year." },
+        { word: "Accelerator", phonetic: "/əkˈsel.ə.reɪ.tər/", pos: "noun", myanmar: "အရှိန်မြှင့်စက် / အရှိန်မြှင့်တင်ပေးသောအရာ", sentence: "This startup accelerator program provides funding and mentorship." },
+        { word: "Acceptance", phonetic: "/əkˈsep.təns/", pos: "noun", myanmar: "လက်ခံခြင်း / သဘောတူခြင်း", sentence: "We are waiting for the candidate's acceptance of our job offer." },
+        { word: "Accident", phonetic: "/ˈæk.sɪ.dənt/", pos: "noun", myanmar: "မတော်တဆမှု", sentence: "The factory had a clean record with no accidents last year." },
+        { word: "Accidental", phonetic: "/ˌæk.sɪˈden.təl/", pos: "adj", myanmar: "မတော်တဆဖြစ်သော", sentence: "The insurance policy covers accidental damage to the property." },
+        { word: "Accidentally", phonetic: "/ˌæk.sɪˈden.təl.i/", pos: "adv", myanmar: "မတော်တဆ / မရည်ရွယ်ဘဲ", sentence: "I accidentally sent the email to the wrong client." },
+        { word: "Acclaim", phonetic: "/əˈkleɪm/", pos: "verb / noun", myanmar: "ချီးကျူးသည် / ဂုဏ်ပြုသည်", sentence: "The architect's new design was widely acclaimed by the critics." },
+        { word: "Accommodate", phonetic: "/əˈkɒm.ə.deɪt/", pos: "verb", myanmar: "နေရာပေးသည် / အဆင်ပြေအောင် ဆောင်ရွက်ပေးသည်", sentence: "The new conference room can accommodate up to 100 guests." },
+        { word: "Accommodating", phonetic: "/əˈkɒm.ə.deɪ.tɪŋ/", pos: "adj", myanmar: "ဖော်ရွေသော / ကူညီတတ်သော", sentence: "The hotel staff were very accommodating during our stay." },
+        { word: "Accommodation", phonetic: "/əˌkɒm.əˈdeɪ.ʃən/", pos: "noun", myanmar: "တည်းခိုနေထိုင်စရာ / ညှိနှိုင်းမှု", sentence: "The company will pay for your travel and accommodation expenses." },
+        { word: "Accomplish", phonetic: "/əˈkʌm.plɪʃ/", pos: "verb", myanmar: "ပြီးမြောက်အောင်မြင်အောင် လုပ်ဆောင်သည်", sentence: "We can accomplish more if we work together as a team." },
+        { word: "Accomplished", phonetic: "/əˈkʌm.plɪʃt/", pos: "adj", myanmar: "ကျွမ်းကျင်သော / အောင်မြင်မှုရထားသော", sentence: "She is an accomplished pianist who has performed worldwide." },
+        { word: "Accomplishment", phonetic: "/əˈkʌm.plɪʃ.mənt/", pos: "noun", myanmar: "အောင်မြင်မှု / ပြီးမြောက်မှု", sentence: "Winning the 'Employee of the Year' award was a great accomplishment." },
+        { word: "Accordingly", phonetic: "/əˈkɔː.dɪŋ.li/", pos: "adv", myanmar: "ထို့ကြောင့် / အခြေအနေနှင့်အညီ", sentence: "The weather forecast predicted rain; accordingly, we moved the event indoors." },
+        { word: "Account", phonetic: "/əˈkaʊnt/", pos: "noun", myanmar: "အကောင့် / ဘဏ်စာရင်း / မှတ်တမ်း / ဖောက်သည်", sentence: "He opened a new savings account at the local bank yesterday." },
+        { word: "Account for", phonetic: "/əˈkaʊnt fɔːr/", pos: "phrasal verb", myanmar: "ရှင်းပြသည် / အချိုးအစားရှိသည်", sentence: "Online orders account for over 60% of our total revenue." },
+        { word: "Accountability", phonetic: "/əˌkaʊn.təˈbɪl.ə.ti/", pos: "noun", myanmar: "တာဝန်ယူမှု / တာဝန်ခံမှု", sentence: "There is a need for more accountability in the public sector." },
+        { word: "Accuracy", phonetic: "/ˈæk.jə.rə.si/", pos: "noun", myanmar: "တိကျမှု / မှန်ကန်မှု", sentence: "Double-check the data to ensure the accuracy of the report." },
+        { word: "Accurate", phonetic: "/ˈæk.jə.rət/", pos: "adj", myanmar: "တိကျသော / မှန်ကန်သော", sentence: "We need accurate information before we can make a decision." },
+        { word: "Accurately", phonetic: "/ˈæk.jə.rət.li/", pos: "adv", myanmar: "တိကျစွာ / မှန်ကန်စွာ", sentence: "The software is designed to calculate taxes accurately." },
+        { word: "Accuse A of B", phonetic: "/əˈkjuːz ... ɒv .../", pos: "phrase", myanmar: "A ကို B ကြောင့် စွပ်စွဲသည်", sentence: "They accused the former employee of stealing trade secrets." },
+        { word: "Acknowledge", phonetic: "/əkˈnɒl.ɪdʒ/", pos: "verb", myanmar: "အသိအမှတ်ပြုသည် / လက်ခံရရှိကြောင်း အကြောင်းကြားသည်", sentence: "Please acknowledge receipt of this email by replying to it." },
+        { word: "Acknowledgement", phonetic: "/əkˈnɒl.ɪdʒ.mənt/", pos: "noun", myanmar: "အသိအမှတ်ပြုခြင်း / လက်ခံရရှိကြောင်း အတည်ပြုချက်", sentence: "We sent an acknowledgement letter as soon as the payment arrived." },
+        { word: "Acquire", phonetic: "/əˈkwaɪər/", pos: "verb", myanmar: "ရရှိသည် / ဝယ်ယူပိုင်ဆိုင်သည်", sentence: "The local bank was acquired by a large international corporation." },
+        { word: "Across the board", phonetic: "/əˈkrɒs ðə bɔːd/", pos: "idiom", myanmar: "အားလုံးအနှံ့ / ခြုံငုံ၍", sentence: "The company decided to give an across-the-board salary increase of 5%." },
+        { word: "Across-the-board", phonetic: "/əˈkrɒs.ðə.bɔːd/", pos: "adj", myanmar: "အားလုံးအနှံ့ / အားလုံးနှင့်ဆိုင်သော", sentence: "The manager announced an across-the-board pay rise for all staff members." },
+        { word: "Activate", phonetic: "/ˈæk.tɪ.veɪt/", pos: "verb", myanmar: "စတင်စေသည် / အသက်သွင်းသည်", sentence: "You need to enter the code to activate your new credit card." },
+        { word: "Active", phonetic: "/ˈæk.tɪv/", pos: "adj", myanmar: "တက်ကြွသော / အလုပ်လုပ်နေသော", sentence: "Despite his age, the founder remains very active in the company." },
+        { word: "Activity", phonetic: "/ækˈtɪv.ə.ti/", pos: "noun", myanmar: "လှုပ်ရှားမှု / ဆောင်ရွက်ချက်", sentence: "There has been a lot of economic activity in the region recently." },
+        { word: "Acute", phonetic: "/əˈkjuːt/", pos: "adj", myanmar: "ပြင်းထန်သော / စူးရှသော", sentence: "The company is facing an acute shortage of skilled labor." },
+        { word: "Adapt", phonetic: "/əˈdæpt/", pos: "verb", myanmar: "လိုက်လျောညီထွေဖြစ်အောင် နေထိုင်သည် / ပြုပြင်ပြောင်းလဲသည်", sentence: "Successful companies are those that can adapt to changing market conditions." },
+        { word: "Adapt A to B", phonetic: "/əˈdæpt ... tuː .../", pos: "phrase", myanmar: "A ကို B နှင့် ကိုက်ညီအောင် ပြုပြင်သည်", sentence: "We need to adapt the software to our specific business needs." },
+        { word: "Adapt to", phonetic: "/əˈdæpt tuː/", pos: "phrasal verb", myanmar: "လိုက်လျောညီထွေဖြစ်အောင် လုပ်သည် / အသားကျအောင်လုပ်သည်", sentence: "It's important to adapt to the local culture when working abroad." },
+        { word: "Adaptation", phonetic: "/ˌæd.æpˈteɪ.ʃən/", pos: "noun", myanmar: "ပြုပြင်ပြောင်းလဲမှု / ဆီလျော်အောင် ပြုပြင်ထားသောအရာ", sentence: "The film is an adaptation of a famous historical novel." },
+        { word: "Add", phonetic: "/æd/", pos: "verb", myanmar: "ပေါင်းထည့်သည် / ထပ်ပြောသည်", sentence: "Don't forget to add your signature at the bottom of the form." },
+        { word: "Add A to B", phonetic: "/æd ... tuː .../", pos: "phrase", myanmar: "A ကို B ထဲသို့ ပေါင်းထည့်သည်", sentence: "Please add my name to the mailing list." },
+        { word: "Additional", phonetic: "/əˈdɪʃ.ən.əl/", pos: "adj", myanmar: "ထပ်ဆောင်း / ပိုမိုသော", sentence: "If you need additional information, please contact our office." },
+        { word: "Additive", phonetic: "/ˈæd.ɪ.tɪv/", pos: "noun", myanmar: "ဖြည့်စွက်စာ / ရောစပ်ပစ္စည်း", sentence: "This brand of juice contains no artificial additives or preservatives." },
+        { word: "Adept", phonetic: "/əˈdept/", pos: "adj", myanmar: "ကျွမ်းကျင်သော / တတ်မြောက်သော", sentence: "She is very adept at dealing with difficult customers." },
+        { word: "Adhere", phonetic: "/ədˈhɪər/", pos: "verb", myanmar: "ကပ်ညှိသည် / စွဲကပ်သည်", sentence: "Make sure the surface is clean so the glue can adhere properly." },
+        { word: "Adhere to", phonetic: "/ədˈhɪər tuː/", pos: "phrasal verb", myanmar: "လိုက်နာသည် / စွဲကိုင်ကျင့်သုံးသည်", sentence: "All employees are required to adhere to the company's code of conduct." },
+        { word: "Adherence", phonetic: "/ədˈhɪə.rəns/", pos: "noun", myanmar: "လိုက်နာခြင်း / စွဲကပ်ခြင်း", sentence: "Strict adherence to the budget is necessary for this quarter." },
+        { word: "Adherent", phonetic: "/ədˈhɪə.rənt/", pos: "noun", myanmar: "လိုက်နာသူ / ထောက်ခံသူ", sentence: "He has been a loyal adherent of this political party for years." },
+        { word: "Adjacent", phonetic: "/əˈdʒeɪ.sənt/", pos: "adj", myanmar: "ကပ်လျက်ရှိသော / ဘေးချင်းကပ်", sentence: "The cafeteria is located adjacent to the main lobby." },
+        { word: "Adjourn", phonetic: "/əˈdʒɜːn/", pos: "verb", myanmar: "အစည်းအဝေးကို ခေတ္တရပ်နားသည် / ရွှေ့ဆိုင်းသည်", sentence: "The chairperson decided to adjourn the meeting until tomorrow morning." },
+        { word: "Adjournment", phonetic: "/əˈdʒɜːn.mənt/", pos: "noun", myanmar: "အစည်းအဝေးရပ်နားခြင်း / ရွှေ့ဆိုင်းခြင်း", sentence: "After the adjournment, the directors discussed the issue privately." },
+        { word: "Adjust", phonetic: "/əˈdʒʌst/", pos: "verb", myanmar: "ချိန်ညှိသည် / ပြုပြင်သည်", sentence: "You can adjust the brightness of the screen in the settings menu." },
+        { word: "Adjust A to B", phonetic: "/əˈdʒʌst ... tuː .../", pos: "phrase", myanmar: "A ကို B နှင့် ကိုက်ညီအောင် ချိန်ညှိသည်", sentence: "Please adjust your chair to a comfortable height." },
+        { word: "Adjustable", phonetic: "/əˈdʒʌs.tə.bəl/", pos: "adj", myanmar: "ချိန်ညှိနိုင်သော / ပြုပြင်ပြောင်းလဲနိုင်သော", sentence: "This office desk has an adjustable height feature." },
+        { word: "Adjustment", phonetic: "/əˈdʒʌst.mənt/", pos: "noun", myanmar: "ချိန်ညှိခြင်း / ပြုပြင်ပြောင်းလဲမှု", sentence: "We made a slight adjustment to the plan to stay within the budget." },
+        { word: "Administer", phonetic: "/ədˈmɪn.ɪ.stər/", pos: "verb", myanmar: "စီမံခန့်ခွဲသည် / ဆောင်ရွက်ပေးသည် / ဆေးတိုက်သည်", sentence: "The human resources department will administer the new training program." },
+        { word: "Administration", phonetic: "/ədˌmɪn.ɪˈstreɪ.ʃən/", pos: "noun", myanmar: "စီမံခန့်ခွဲမှု / အုပ်ချုပ်ရေးအဖွဲ့", sentence: "The company's administration is located on the top floor." },
+        { word: "Administrative", phonetic: "/ədˈmɪn.ɪ.strə.tɪv/", pos: "adj", myanmar: "စီမံခန့်ခွဲမှုဆိုင်ရာ / ရုံးလုပ်ငန်းဆိုင်ရာ", sentence: "He is looking for an administrative assistant job." },
+        { word: "Administrator", phonetic: "/ədˈmɪn.ɪ.streɪ.tər/", pos: "noun", myanmar: "စီမံခန့်ခွဲသူ / အုပ်ချုပ်သူ", sentence: "Please contact the system administrator if you lose your password." },
+        { word: "Adopt", phonetic: "/əˈdɒpt/", pos: "verb", myanmar: "လက်ခံကျင့်သုံးသည် / မွေးစားသည် / အတည်ပြုသည်", sentence: "The board of directors decided to adopt a new hiring policy." },
+        { word: "Adoption", phonetic: "/əˈdɒp.ʃən/", pos: "noun", myanmar: "လက်ခံကျင့်သုံးခြင်း / မွေးစားခြင်း", sentence: "The adoption of new technology has significantly boosted our productivity." },
+        { word: "Adorn A with B", phonetic: "/əˈdɔːn ... wɪð .../", pos: "phrase", myanmar: "A ကို B ဖြင့် ဆင်ယင်မွမ်းမံသည်", sentence: "They decided to adorn the office with fresh flowers for the anniversary." },
+        { word: "Adversary", phonetic: "/ˈæd.və.sər.i/", pos: "noun", myanmar: "ရန်သူ / ပြိုင်ဘက်", sentence: "In business, it is important to understand the strengths of your adversary." },
+        { word: "Adverse", phonetic: "/ˈæd.vɜːs/", pos: "adj", myanmar: "ဆိုးဝါးသော / မကောင်းသော / ဆန့်ကျင်ဘက်ဖြစ်သော", sentence: "The flight was canceled due to adverse weather conditions." },
+        { word: "Advertise", phonetic: "/ˈæd.və.taɪz/", pos: "verb", myanmar: "ကြော်ငြာသည်", sentence: "The company plans to advertise its new product on social media." },
+        { word: "Advice", phonetic: "/ədˈvaɪs/", pos: "noun", myanmar: "အကြံဉာဏ်", sentence: "My mentor gave me some valuable advice about career planning." },
+        { word: "Advisable", phonetic: "/ədˈvaɪ.zə.bəl/", pos: "adj", myanmar: "အကြံပြုလိုသော / သင့်တော်သော", sentence: "It is advisable to book your flight tickets at least a month in advance." },
+        { word: "Advise", phonetic: "/ədˈvaɪz/", pos: "verb", myanmar: "အကြံပေးသည်", sentence: "Our legal team will advise you on how to proceed with the contract." },
+        { word: "Advise A to do", phonetic: "/ədˈvaɪz ... tuː duː/", pos: "phrase", myanmar: "A ကို 'တစ်ခုခုလုပ်ဖို့' အကြံပေးသည်", sentence: "The doctor advised him to take a few days off to recover." },
+        { word: "Advisor / Adviser", phonetic: "/ədˈvaɪ.zər/", pos: "noun", myanmar: "အကြံပေးပုဂ္ဂိုလ်", sentence: "She works as a senior financial advisor for a well-known investment firm." },
+        { word: "Advisory", phonetic: "/ədˈvaɪ.zər.i/", pos: "noun / adj", myanmar: "အကြံပေးသောအဖွဲ့ / သတိပေးချက်", sentence: "A weather advisory was issued due to the approaching hurricane." },
+        { word: "Advocacy", phonetic: "/ˈæd.və.kə.si/", pos: "noun", myanmar: "ထောက်ခံပြောဆိုခြင်း / ရှေ့နေလိုက်ခြင်း", sentence: "Her advocacy for environmental protection is well-known in the industry." },
+        { word: "Advocate", phonetic: "/ˈæd.və.keɪt/", pos: "verb / noun", myanmar: "ထောက်ခံအားပေးသူ / ထောက်ခံပြောဆိုသည်", sentence: "The CEO continues to advocate for sustainable business practices." },
+        { word: "Affiliate", phonetic: "/əˈfɪl.i.eɪt/", pos: "verb / noun", myanmar: "တွဲဖက်သည် / အဖွဲ့ဝင်အဖြစ် လက်ခံသည် / တွဲဖက်ကုမ္ပဏီ", sentence: "Our hospital is affiliated with a major university." },
+        { word: "Affiliation", phonetic: "/əˌfɪl.iˈeɪ.ʃən/", pos: "noun", myanmar: "ဆက်နွှယ်မှု / အဖွဲ့ဝင်အဖြစ် ပါဝင်မှု", sentence: "Please state your political affiliation on the application form." },
+        { word: "Affirm", phonetic: "/əˈfɜːm/", pos: "verb", myanmar: "အတည်ပြုသည် / အခိုင်အမာဆိုသည်", sentence: "The court's decision was to affirm the previous judgment." },
+        { word: "Affirmation", phonetic: "/ˌæf.əˈmeɪ.ʃən/", pos: "noun", myanmar: "အတည်ပြုချက် / အခိုင်အမာ ပြောဆိုခြင်း", sentence: "The project received a formal affirmation from the board of directors." },
+        { word: "Affirmative", phonetic: "/əˈfɜː.mə.tɪv/", pos: "adj", myanmar: "အပြုသဘောဆောင်သော / ထောက်ခံသော", sentence: "If you agree with the proposal, please give an affirmative response." },
+        { word: "Affluence", phonetic: "/ˈæf.lu.əns/", pos: "noun", myanmar: "ကြွယ်ဝချမ်းသာမှု / ပေါများမှု", sentence: "The country's economic affluence is reflected in its modern infrastructure." },
+        { word: "Affluent", phonetic: "/ˈæf.lu.ənt/", pos: "adj", myanmar: "ကြွယ်ဝချမ်းသာသော", sentence: "The shop targets affluent customers who prefer luxury brands." },
+        { word: "Afterward", phonetic: "/ˈɑːf.tə.wəd/", pos: "adv", myanmar: "နောက်ပိုင်းတွင် / နောက်မှ", sentence: "We had a short meeting and went to dinner afterward." },
+        { word: "Age", phonetic: "/eɪdʒ/", pos: "noun / verb", myanmar: "အသက် / ခေတ် / သက်တမ်း", sentence: "We are living in the digital age, where technology changes rapidly." },
+        { word: "Aged", phonetic: "/eɪdʒd/", pos: "adj", myanmar: "အသက်...ရှိသော / သက်ကြီးရွယ်အို", sentence: "The program is designed for children aged between five and ten." },
+        { word: "Agenda", phonetic: "/əˈdʒen.də/", pos: "noun", myanmar: "အစည်းအဝေး အစီအစဉ် / လုပ်ငန်းစဉ်", sentence: "The first item on the agenda is the budget report." },
+        { word: "Aggravate", phonetic: "/ˈæɡ.rə.veɪt/", pos: "verb", myanmar: "ပိုမိုဆိုးရွားစေသည် / ဒေါသဆွသည်", sentence: "High stress levels can aggravate existing health problems." },
+        { word: "Aggravation", phonetic: "/ˌæɡ.rəˈveɪ.ʃən/", pos: "noun", myanmar: "ပိုမိုဆိုးရွားလာခြင်း / စိတ်ပျက်စရာအခြေအနေ", sentence: "The delay in the shipment caused a lot of aggravation for our customers." },
+        { word: "Aging", phonetic: "/ˈeɪ.dʒɪŋ/", pos: "noun / adj", myanmar: "အိုမင်းရင့်ရော်ခြင်း / ဟောင်းနွမ်းလာခြင်း", sentence: "The company needs to replace its aging computer systems." },
+        { word: "Agree", phonetic: "/əˈɡriː/", pos: "verb", myanmar: "သဘောတူသည် / လက်ခံသည်", sentence: "I entirely agree with your suggestion to hire more staff." },
+        { word: "Aim for", phonetic: "/eɪm fɔːr/", pos: "phrasal verb", myanmar: "ရည်မှန်းသည် / ဦးတည်သည်", sentence: "We should aim for a 20% increase in sales by the end of the year." },
+        { word: "Aircraft", phonetic: "/ˈeə.krɑːft/", pos: "noun", myanmar: "လေယာဉ် / ပျံသန်းရေးယာဉ်", sentence: "The airline has ordered ten new aircraft to expand its international routes." },
+        { word: "Airplane", phonetic: "/ˈeə.pleɪn/", pos: "noun", myanmar: "လေယာဉ်ပျံ", sentence: "The airplane is scheduled to take off at 9:00 AM." },
+        { word: "All told", phonetic: "/ɔːl təʊld/", pos: "idiom", myanmar: "အားလုံးပေါင်းသော် / ခြုံငုံကြည့်သော်", sentence: "All told, there were over 500 applicants for the position." },
+        { word: "Allegation", phonetic: "/ˌæl.ɪˈɡeɪ.ʃən/", pos: "noun", myanmar: "စွပ်စွဲချက်", sentence: "The company denied the allegations of unfair labor practices." },
+        { word: "Allege", phonetic: "/əˈledʒ/", pos: "verb", myanmar: "စွပ်စွဲသည် / အခိုင်အမာဆိုသည်", sentence: "They allege that the manager misused company funds." },
+        { word: "Alleged", phonetic: "/əˈledʒd/", pos: "adj", myanmar: "စွပ်စွဲခံထားရသော", sentence: "We are still investigating the alleged breach of security." },
+        { word: "Allegedly", phonetic: "/əˈledʒ.ɪd.li/", pos: "adv", myanmar: "စွပ်စွဲချက်များအရ / ပြောဆိုချက်အရ", sentence: "The official allegedly accepted bribes from several contractors." }
+      ]
+    };
+
+    // STATE
+    let state = {
+      currentCategory: null,
+      currentBook: null,
+      currentChapter: null,
+      currentTab: 'list',
+      playbackSpeed: 1.0,
+      activeVocabList: [],
+      cardIndex: 0,
+      quizScore: 0,
+      quizQuestion: null
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      navigateToHome();
+    });
+
+    function navigateToHome() {
+      state.currentCategory = null;
+      state.currentBook = null;
+      state.currentChapter = null;
+
+      document.getElementById('screen-home').classList.remove('hidden');
+      document.getElementById('screen-chapters').classList.add('hidden');
+      document.getElementById('screen-vocab').classList.add('hidden');
+      document.getElementById('quick-view-toggle').classList.add('hidden');
+      document.getElementById('vocab-count-badge').classList.add('hidden');
+
+      renderBreadcrumb();
+    }
+
+    function selectBook(bookNum) {
+      state.currentBook = bookNum;
+      state.currentCategory = null;
+
+      document.getElementById('chapter-book-title').innerText = `Book ${bookNum} Chapters`;
+      renderChapterGrid();
+
+      document.getElementById('screen-home').classList.add('hidden');
+      document.getElementById('screen-chapters').classList.remove('hidden');
+      document.getElementById('screen-vocab').classList.add('hidden');
+      document.getElementById('quick-view-toggle').classList.add('hidden');
+      document.getElementById('vocab-count-badge').classList.add('hidden');
+
+      renderBreadcrumb();
+    }
+
+    function selectChapter(chapNum) {
+      state.currentChapter = chapNum;
+      loadVocabData();
+
+      document.getElementById('screen-chapters').classList.add('hidden');
+      document.getElementById('screen-vocab').classList.remove('hidden');
+      document.getElementById('quick-view-toggle').classList.remove('hidden');
+      document.getElementById('vocab-count-badge').classList.remove('hidden');
+
+      renderBreadcrumb();
+      switchTab('list');
+    }
+
+    function selectDirectCategory(categoryName) {
+      state.currentCategory = categoryName;
+      state.currentBook = null;
+      state.currentChapter = null;
+
+      loadVocabData();
+
+      document.getElementById('screen-home').classList.add('hidden');
+      document.getElementById('screen-chapters').classList.add('hidden');
+      document.getElementById('screen-vocab').classList.remove('hidden');
+      document.getElementById('quick-view-toggle').classList.remove('hidden');
+      document.getElementById('vocab-count-badge').classList.remove('hidden');
+
+      renderBreadcrumb();
+      switchTab('list');
+    }
+
+    function renderBreadcrumb() {
+      const container = document.getElementById('breadcrumb');
+      let html = `<span onclick="navigateToHome()" class="cursor-pointer hover:text-indigo-600"><i class="fa-solid fa-house mr-1"></i>Home</span>`;
+
+      if (state.currentBook) {
+        html += `<i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>`;
+        if (state.currentChapter) {
+          html += `<span onclick="selectBook(${state.currentBook})" class="cursor-pointer hover:text-indigo-600">Book ${state.currentBook}</span>`;
+          html += `<i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>`;
+          html += `<span class="text-indigo-600 font-bold">Chapter ${state.currentChapter}</span>`;
+        } else {
+          html += `<span class="text-indigo-600 font-bold">Book ${state.currentBook}</span>`;
+        }
+      } else if (state.currentCategory) {
+        html += `<i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>`;
+        html += `<span class="text-indigo-600 font-bold">${state.currentCategory}</span>`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function renderChapterGrid() {
+      const grid = document.getElementById('chapter-grid');
+      let html = '';
+
+      for (let i = 1; i <= 30; i++) {
+        let isPreloaded = (state.currentBook === 4 && (i === 1 || i === 2));
+        html += `
+          <button onclick="selectChapter(${i})" class="group p-4 bg-white hover:bg-indigo-600 hover:text-white rounded-2xl border border-slate-200 shadow-sm transition flex flex-col items-center justify-center text-center relative overflow-hidden">
+            ${isPreloaded ? `<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-amber-400 rounded-full"></span>` : ''}
+            <span class="text-xs font-semibold uppercase text-slate-400 group-hover:text-indigo-200">CH</span>
+            <span class="text-xl font-black mt-0.5">${i}</span>
+          </button>
+        `;
+      }
+      grid.innerHTML = html;
+    }
+
+    function getStorageKey() {
+      if (state.currentBook && state.currentChapter) {
+        return `Book_${state.currentBook}_Ch_${state.currentChapter}`;
+      } else if (state.currentCategory) {
+        return `Cat_${state.currentCategory}`;
+      }
+      return 'default';
+    }
+
+    function loadVocabData() {
+      const key = getStorageKey();
+      let saved = localStorage.getItem(key);
+
+      if (saved) {
+        state.activeVocabList = JSON.parse(saved);
+      } else if (INITIAL_DATA[key]) {
+        state.activeVocabList = INITIAL_DATA[key];
+      } else {
+        state.activeVocabList = [];
+      }
+
+      renderVocabList();
+    }
+
+    function setSpeed(speed) {
+      state.playbackSpeed = speed;
+      document.querySelectorAll('[id^="speed-"]').forEach(btn => {
+        btn.classList.remove('bg-white', 'text-indigo-700', 'shadow-sm');
+        btn.classList.add('text-white/80');
+      });
+      const activeBtn = document.getElementById(`speed-${speed.toString().replace('.', '')}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-white', 'text-indigo-700', 'shadow-sm');
+        activeBtn.classList.remove('text-white/80');
+      }
+    }
+
+    function speakWord(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = state.playbackSpeed;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function renderVocabList() {
+      const container = document.getElementById('vocab-cards-container');
+      document.getElementById('vocab-count-badge').innerText = `${state.activeVocabList.length} Words`;
+
+      if (state.activeVocabList.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-2 text-center py-12 bg-white rounded-3xl border border-dashed border-slate-300 p-6">
+            <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-3"></i>
+            <p class="text-slate-600 font-bold">No words in this module yet.</p>
+            <p class="text-xs text-slate-400 mt-1">Click the button below to add words.</p>
+            <button onclick="openImportModal()" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-sm">
+              + Add Words Now
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      state.activeVocabList.forEach((item) => {
+        html += `
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-between">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h3 class="text-xl font-bold text-slate-900 tracking-tight">${item.word}</h3>
+                  <button onclick="speakWord('${item.word}')" class="w-8 h-8 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center transition">
+                    <i class="fa-solid fa-volume-high text-xs"></i>
+                  </button>
+                </div>
+                ${item.phonetic ? `<p class="text-xs font-mono text-slate-400 mt-0.5">${item.phonetic}</p>` : ''}
+              </div>
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold uppercase tracking-wider rounded-md">
+                ${item.pos || 'vocab'}
+              </span>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <p class="myanmar-text text-lg font-bold text-indigo-950">${item.myanmar || '—'}</p>
+              ${item.sentence ? `<p class="text-xs text-slate-500 italic mt-1 font-serif">"${item.sentence}"</p>` : ''}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function filterVocab() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const cards = document.getElementById('vocab-cards-container').children;
+
+      Array.from(cards).forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    function switchTab(tabName) {
+      state.currentTab = tabName;
+      ['list', 'cards', 'quiz'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.add('hidden');
+        const btn = document.getElementById(`tab-btn-${t}`);
+        btn.classList.remove('bg-white', 'text-indigo-700', 'shadow-sm');
+        btn.classList.add('text-white');
+      });
+
+      document.getElementById(`view-${tabName}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+      activeBtn.classList.add('bg-white', 'text-indigo-700', 'shadow-sm');
+      activeBtn.classList.remove('text-white');
+
+      if (tabName === 'cards') initFlashcards();
+      if (tabName === 'quiz') initQuiz();
+    }
+
+    function initFlashcards() {
+      state.cardIndex = 0;
+      updateFlashcardUI();
+    }
+
+    function flipCard() {
+      document.getElementById('flashcard').classList.toggle('rotate-y-180');
+    }
+
+    function updateFlashcardUI() {
+      const card = document.getElementById('flashcard');
+      card.classList.remove('rotate-y-180');
+
+      if (state.activeVocabList.length === 0) {
+        document.getElementById('card-word-front').innerText = "No Words";
+        document.getElementById('card-myanmar-back').innerText = "No Data";
+        return;
+      }
+
+      const current = state.activeVocabList[state.cardIndex];
+      document.getElementById('card-pos-front').innerText = current.pos || 'WORD';
+      document.getElementById('card-word-front').innerText = current.word;
+      document.getElementById('card-phonetic-front').innerText = current.phonetic || '';
+
+      document.getElementById('card-pos-back').innerText = current.pos || 'MEANING';
+      document.getElementById('card-myanmar-back').innerText = current.myanmar || '—';
+      document.getElementById('card-sentence-back').innerText = current.sentence ? `"${current.sentence}"` : '';
+
+      document.getElementById('card-counter').innerText = `${state.cardIndex + 1} / ${state.activeVocabList.length}`;
+    }
+
+    function nextCard() {
+      if (state.activeVocabList.length === 0) return;
+      state.cardIndex = (state.cardIndex + 1) % state.activeVocabList.length;
+      updateFlashcardUI();
+    }
+
+    function prevCard() {
+      if (state.activeVocabList.length === 0) return;
+      state.cardIndex = (state.cardIndex - 1 + state.activeVocabList.length) % state.activeVocabList.length;
+      updateFlashcardUI();
+    }
+
+    function speakCurrentCard() {
+      if (state.activeVocabList.length > 0) {
+        speakWord(state.activeVocabList[state.cardIndex].word);
+      }
+    }
+
+    function initQuiz() {
+      state.quizScore = 0;
+      document.getElementById('quiz-score').innerText = `Score: ${state.quizScore}`;
+      nextQuizQuestion();
+    }
+
+    function nextQuizQuestion() {
+      if (state.activeVocabList.length === 0) {
+        document.getElementById('quiz-word').innerText = "No Data";
+        document.getElementById('quiz-options').innerHTML = `<p class="text-center text-slate-400 py-4">Add vocabulary to start quiz.</p>`;
+        return;
+      }
+
+      const target = state.activeVocabList[Math.floor(Math.random() * state.activeVocabList.length)];
+      state.quizQuestion = target;
+
+      document.getElementById('quiz-word').innerText = target.word;
+      document.getElementById('quiz-phonetic').innerText = target.phonetic || '';
+
+      let options = [target];
+      while (options.length < Math.min(4, state.activeVocabList.length)) {
+        let rand = state.activeVocabList[Math.floor(Math.random() * state.activeVocabList.length)];
+        if (!options.find(o => o.word === rand.word)) options.push(rand);
+      }
+      options.sort(() => Math.random() - 0.5);
+
+      const optionsContainer = document.getElementById('quiz-options');
+      optionsContainer.innerHTML = '';
+
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = "w-full p-4 bg-slate-50 hover:bg-indigo-50 border border-slate-200 rounded-2xl text-left myanmar-text text-slate-800 font-bold transition flex items-center justify-between";
+        btn.innerHTML = `<span>${opt.myanmar || opt.word}</span> <i class="fa-regular fa-circle text-slate-300"></i>`;
+        btn.onclick = () => checkQuizAnswer(opt, target, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function checkQuizAnswer(selected, correct, btnElement) {
+      const allButtons = document.getElementById('quiz-options').children;
+      Array.from(allButtons).forEach(b => b.disabled = true);
+
+      if (selected.word === correct.word) {
+        btnElement.classList.remove('bg-slate-50', 'border-slate-200');
+        btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+        btnElement.querySelector('i').className = "fa-solid fa-circle-check text-white";
+        state.quizScore += 10;
+        document.getElementById('quiz-score').innerText = `Score: ${state.quizScore}`;
+      } else {
+        btnElement.classList.remove('bg-slate-50', 'border-slate-200');
+        btnElement.classList.add('bg-rose-500', 'text-white', 'border-rose-600');
+        btnElement.querySelector('i').className = "fa-solid fa-circle-xmark text-white";
+      }
+    }
+
+    function speakQuizWord() {
+      if (state.quizQuestion) speakWord(state.quizQuestion.word);
+    }
+
+    function openImportModal() {
+      document.getElementById('import-modal').classList.remove('hidden');
+    }
+
+    function closeImportModal() {
+      document.getElementById('import-modal').classList.add('hidden');
+      document.getElementById('import-text').value = '';
+    }
+
+    function processImport() {
+      const rawText = document.getElementById('import-text').value.trim();
+      if (!rawText) return;
+
+      const items = rawText.split(/[\n,]+/).map(i => i.trim()).filter(i => i.length > 0);
+      const newEntries = items.map(w => ({
+        word: w,
+        phonetic: '',
+        pos: 'word',
+        myanmar: 'ဆောင်းပါး / စကားလုံး',
+        sentence: ''
+      }));
+
+      state.activeVocabList = [...state.activeVocabList, ...newEntries];
+      localStorage.setItem(getStorageKey(), JSON.stringify(state.activeVocabList));
+
+      closeImportModal();
+      renderVocabList();
+    }
+  </script>
+</body>
+</html>
