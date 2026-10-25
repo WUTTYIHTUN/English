@@ -10,8 +10,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Padauk:wght@400;700&display=swap');
 body{font-family:'Plus Jakarta Sans','Padauk',sans-serif;background:#f8fafc}
 .myanmar-text{font-family:'Padauk',sans-serif}
-.perspective-1000{perspective:1000px}.transform-style-3d{transform-style:preserve-3d}
-.backface-hidden{backface-visibility:hidden}.rotate-y-180{transform:rotateY(180deg)}
+.perspective-1000{perspective:1000px;-webkit-perspective:1000px}
+#flashcard{transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .6s;-webkit-transition:-webkit-transform .6s}
+.backface-hidden{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face-back{transform:rotateY(180deg);-webkit-transform:rotateY(180deg)}
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-slate-800">
@@ -69,13 +71,13 @@ body{font-family:'Plus Jakarta Sans','Padauk',sans-serif;background:#f8fafc}
 
 <div id="view-cards" class="hidden flex flex-col items-center justify-center py-6">
 <div class="w-full max-w-lg perspective-1000">
-<div id="flashcard" onclick="flipCard()" class="relative w-full h-80 rounded-3xl shadow-xl cursor-pointer transform-style-3d transition-transform duration-500">
+<div id="flashcard" onclick="flipCard()" class="relative w-full h-80 rounded-3xl shadow-xl cursor-pointer ">
 <div class="absolute inset-0 p-8 flex flex-col justify-between backface-hidden bg-gradient-to-br from-indigo-600 to-purple-700 text-white rounded-3xl">
 <div class="flex justify-between items-center"><span class="text-xs uppercase tracking-widest text-indigo-200 font-bold" id="card-pos-front">WORD</span>
 <button onclick="event.stopPropagation();speakCurrentCard()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button></div>
 <div class="text-center my-auto"><h2 id="card-word-front" class="text-4xl font-extrabold">--</h2><p id="card-phonetic-front" class="text-sm font-mono text-indigo-200 mt-2"></p></div>
 <div class="text-center text-xs text-indigo-200 font-medium">Tap card to reveal Myanmar meaning <i class="fa-solid fa-rotate text-amber-300 ml-1"></i></div></div>
-<div class="absolute inset-0 p-8 flex flex-col justify-between backface-hidden rotate-y-180 bg-white text-slate-800 rounded-3xl border-2 border-indigo-500">
+<div class="absolute inset-0 p-8 flex flex-col justify-between backface-hidden face-back bg-white text-slate-800 rounded-3xl border-2 border-indigo-500">
 <div class="flex justify-between items-center"><span class="text-xs uppercase tracking-widest text-indigo-600 font-bold" id="card-pos-back">MEANING</span>
 <button onclick="event.stopPropagation();speakCurrentCard()" class="w-10 h-10 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button></div>
 <div class="text-center my-auto"><h3 id="card-myanmar-back" class="myanmar-text text-2xl font-extrabold text-indigo-950">--</h3><p id="card-sentence-back" class="text-xs text-slate-500 italic mt-4 max-w-sm mx-auto"></p></div>
@@ -421,9 +423,11 @@ function switchTab(t){
   if (t==='quiz') initQuiz();
 }
 
-function flipCard(){ $('flashcard').classList.toggle('rotate-y-180'); }
+let flipped=false;
+function setFlip(f){ flipped=f; $('flashcard').style.transform = f ? 'rotateY(180deg)' : 'rotateY(0deg)'; }
+function flipCard(){ setFlip(!flipped); }
 function updateFlashcardUI(){
-  $('flashcard').classList.remove('rotate-y-180');
+  setFlip(false);
   if (!state.activeVocabList.length){ $('card-word-front').innerText='No Words'; $('card-myanmar-back').innerText='No Data'; $('card-counter').innerText='0 / 0'; return; }
   const c = state.activeVocabList[state.cardIndex];
   $('card-pos-front').innerText = c.pos||'WORD'; $('card-word-front').innerText = c.word; $('card-phonetic-front').innerText = c.phonetic||'';
