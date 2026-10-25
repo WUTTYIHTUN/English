@@ -31,7 +31,7 @@
 </head>
 <body class="min-h-screen flex flex-col text-slate-800">
 
-  <!-- VIBRANT PURPLE-TO-PINK HEADER BAR WITH EMBEDDED PILL VIEW SWITCHER -->
+  <!-- HEADER BAR -->
   <header class="bg-gradient-to-r from-[#4f46e5] via-[#7c3aed] to-[#ec4899] text-white shadow-md sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       
@@ -46,10 +46,10 @@
         </div>
       </div>
 
-      <!-- Center / Right Controls Bar -->
+      <!-- Controls Bar -->
       <div class="flex items-center space-x-3">
         
-        <!-- View Switcher Pills (Visible inside Vocab view) -->
+        <!-- View Switcher Pills -->
         <div id="quick-view-toggle" class="hidden bg-black/20 p-1 rounded-full backdrop-blur-md flex items-center space-x-1 border border-white/10">
           <button onclick="switchTab('list')" id="tab-btn-list" class="px-4 py-1.5 rounded-full text-xs font-bold bg-white text-indigo-700 shadow-sm transition">
             <i class="fa-solid fa-list mr-1.5"></i>List View
@@ -301,7 +301,7 @@
           </div>
         </div>
 
-        <!-- Navigation Controls for Cards -->
+        <!-- Controls -->
         <div class="flex items-center space-x-6 mt-8">
           <button onclick="prevCard()" class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow hover:bg-slate-50 text-slate-700 flex items-center justify-center text-lg transition">
             <i class="fa-solid fa-chevron-left"></i>
@@ -379,7 +379,7 @@
     </div>
   </div>
 
-  <!-- SCRIPT LOGIC WITH BOOK 4 AND GENERAL PART-1 -->
+  <!-- SCRIPT LOGIC -->
   <script>
     const INITIAL_DATA = {
       "Book_4_Ch_1": [
@@ -672,7 +672,9 @@
         activeBtn.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-white text-indigo-700 shadow-sm transition";
       }
 
-      if (tabName === 'cards') {
+      if (tabName === 'list') {
+        renderVocabList(currentVocabList);
+      } else if (tabName === 'cards') {
         currentCardIndex = 0;
         isCardFlipped = false;
         renderFlashcard();
@@ -728,7 +730,7 @@
       renderVocabList(filtered);
     }
 
-    // Flashcard Methods
+    // Flashcards
     function renderFlashcard() {
       if (currentVocabList.length === 0) return;
       const item = currentVocabList[currentCardIndex];
@@ -737,169 +739,4 @@
       document.getElementById('card-phonetic-front').innerText = item.phonetic || '';
       document.getElementById('card-pos-front').innerText = item.pos ? item.pos.toUpperCase() : 'WORD';
       
-      document.getElementById('card-myanmar-back').innerText = item.myanmar;
-      document.getElementById('card-synonyms-back').innerText = item.synonyms ? `Synonyms: ${item.synonyms}` : 'Synonyms: None';
-      document.getElementById('card-sentence-back').innerText = `"${item.sentence}"`;
-      document.getElementById('card-pos-back').innerText = item.pos ? item.pos.toUpperCase() : 'TRANSLATION';
-
-      document.getElementById('card-counter').innerText = `${currentCardIndex + 1} / ${currentVocabList.length}`;
-      
-      const card = document.getElementById('flashcard');
-      if (isCardFlipped) {
-        card.classList.add('rotate-y-180');
-      } else {
-        card.classList.remove('rotate-y-180');
-      }
-    }
-
-    function flipCard() {
-      isCardFlipped = !isCardFlipped;
-      const card = document.getElementById('flashcard');
-      if (isCardFlipped) {
-        card.classList.add('rotate-y-180');
-      } else {
-        card.classList.remove('rotate-y-180');
-      }
-    }
-
-    function nextCard() {
-      isCardFlipped = false;
-      currentCardIndex = (currentCardIndex + 1) % currentVocabList.length;
-      renderFlashcard();
-    }
-
-    function prevCard() {
-      isCardFlipped = false;
-      currentCardIndex = (currentCardIndex - 1 + currentVocabList.length) % currentVocabList.length;
-      renderFlashcard();
-    }
-
-    function speakCurrentCard() {
-      const item = currentVocabList[currentCardIndex];
-      speakWord(item.word);
-    }
-
-    // Quiz Methods
-    function loadQuizQuestion() {
-      if (currentVocabList.length === 0) return;
-      currentQuizIndex = Math.floor(Math.random() * currentVocabList.length);
-      currentQuizQuestion = currentVocabList[currentQuizIndex];
-
-      document.getElementById('quiz-word').innerText = currentQuizQuestion.word;
-      document.getElementById('quiz-phonetic').innerText = currentQuizQuestion.phonetic || '';
-
-      // Generate 3 distractors
-      let options = [currentQuizQuestion.myanmar];
-      while (options.length < 4 && options.length < currentVocabList.length) {
-        const randomItem = currentVocabList[Math.floor(Math.random() * currentVocabList.length)];
-        if (!options.includes(randomItem.myanmar)) {
-          options.push(randomItem.myanmar);
-        }
-      }
-      options.sort(() => Math.random() - 0.5);
-
-      const container = document.getElementById('quiz-options');
-      container.innerHTML = '';
-      options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = "w-full p-3.5 bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 rounded-2xl text-sm font-bold text-slate-700 myanmar-text text-left transition flex items-center justify-between";
-        btn.innerHTML = `<span>${opt}</span><i class="fa-regular fa-circle text-slate-300"></i>`;
-        btn.onclick = () => checkQuizAnswer(opt, btn);
-        container.appendChild(btn);
-      });
-    }
-
-    function checkQuizAnswer(selectedOpt, btnElement) {
-      const buttons = document.getElementById('quiz-options').getElementsByTagName('button');
-      Array.from(buttons).forEach(b => b.disabled = true);
-
-      if (selectedOpt === currentQuizQuestion.myanmar) {
-        btnElement.className = "w-full p-3.5 bg-emerald-50 border-2 border-emerald-500 rounded-2xl text-sm font-bold text-emerald-900 myanmar-text text-left flex items-center justify-between shadow-sm";
-        btnElement.innerHTML = `<span>${selectedOpt}</span><i class="fa-solid fa-check text-emerald-600"></i>`;
-        quizScore += 10;
-      } else {
-        btnElement.className = "w-full p-3.5 bg-rose-50 border-2 border-rose-500 rounded-2xl text-sm font-bold text-rose-900 myanmar-text text-left flex items-center justify-between shadow-sm";
-        btnElement.innerHTML = `<span>${selectedOpt}</span><i class="fa-solid fa-xmark text-rose-600"></i>`;
-        
-        // Highlight correct
-        Array.from(buttons).forEach(b => {
-          if (b.innerText.includes(currentQuizQuestion.myanmar)) {
-            b.className = "w-full p-3.5 bg-emerald-50 border-2 border-emerald-500 rounded-2xl text-sm font-bold text-emerald-900 myanmar-text text-left flex items-center justify-between shadow-sm";
-          }
-        });
-      }
-      document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
-    }
-
-    function nextQuizQuestion() {
-      loadQuizQuestion();
-    }
-
-    function speakQuizWord() {
-      if (currentQuizQuestion) {
-        speakWord(currentQuizQuestion.word);
-      }
-    }
-
-    // Audio & Speed
-    function setSpeed(rate) {
-      speechRate = rate;
-      [0.75, 1.0, 1.25].forEach(r => {
-        const idStr = r === 0.75 ? 'speed-075' : r === 1.0 ? 'speed-10' : 'speed-125';
-        const btn = document.getElementById(idStr);
-        if (r === rate) {
-          btn.className = "px-2.5 py-1 rounded-full bg-white text-indigo-700 font-bold shadow-sm";
-        } else {
-          btn.className = "px-2.5 py-1 rounded-full font-bold text-white/80 hover:text-white transition";
-        }
-      });
-    }
-
-    function speakWord(text) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = speechRate;
-        utterance.lang = 'en-US';
-        window.speechSynthesis.speak(utterance);
-      }
-    }
-
-    // Import Modal
-    function openImportModal() {
-      document.getElementById('import-modal').classList.remove('hidden');
-    }
-
-    function closeImportModal() {
-      document.getElementById('import-modal').classList.add('hidden');
-    }
-
-    function processImport() {
-      const rawText = document.getElementById('import-text').value.trim();
-      if (!rawText) return;
-
-      const lines = rawText.split('\n');
-      lines.forEach(line => {
-        const parts = line.split(',');
-        const w = parts[0] ? parts[0].trim() : line.trim();
-        const m = parts[1] ? parts[1].trim() : 'ထည့်သွင်းထားသောစကားလုံး';
-        const syn = parts[2] ? parts[2].trim() : 'synonym, example';
-        
-        currentVocabList.push({
-          word: w,
-          phonetic: "/wɜːd/",
-          pos: "noun",
-          myanmar: m,
-          synonyms: syn,
-          sentence: `Example sentence for ${w}.`
-        });
-      });
-
-      document.getElementById('import-text').value = '';
-      closeImportModal();
-      switchTab('list');
-      updateVocabCount();
-    }
-  </script>
-</body>
-</html>
+      document.getElementById('card-myanmar-back').innerText = item
