@@ -80,7 +80,7 @@ body{font-family:'Plus Jakarta Sans','Padauk',sans-serif;background:#f8fafc}
 <div class="absolute inset-0 p-8 flex flex-col justify-between backface-hidden face-back bg-white text-slate-800 rounded-3xl border-2 border-indigo-500">
 <div class="flex justify-between items-center"><span class="text-xs uppercase tracking-widest text-indigo-600 font-bold" id="card-pos-back">MEANING</span>
 <button onclick="event.stopPropagation();speakCurrentCard()" class="w-10 h-10 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></button></div>
-<div class="text-center my-auto"><h3 id="card-myanmar-back" class="myanmar-text text-2xl font-extrabold text-indigo-950">--</h3><p id="card-sentence-back" class="text-xs text-slate-500 italic mt-4 max-w-sm mx-auto"></p></div>
+<div class="text-center my-auto"><h3 id="card-myanmar-back" class="myanmar-text text-2xl font-extrabold text-indigo-950">--</h3><p id="card-sentence-back" class="text-xs text-slate-500 italic mt-4 max-w-sm mx-auto"></p><p id="card-syn-back" class="text-xs text-emerald-700 font-semibold mt-3"></p></div>
 <div class="text-center text-xs text-slate-400 font-medium">Tap card to see English word</div></div>
 </div></div>
 <div class="flex items-center space-x-6 mt-8">
@@ -112,118 +112,118 @@ body{font-family:'Plus Jakarta Sans','Padauk',sans-serif;background:#f8fafc}
 </div></div>
 
 <script>
-// Compact parser: word|phonetic|pos|myanmar|sentence
-const parseRows = raw => raw.trim().split('\n').map(l => { const [word,phonetic,pos,myanmar,sentence] = l.split('|'); return {word,phonetic,pos,myanmar,sentence}; });
+// Compact parser: word|phonetic|pos|myanmar|sentence|synonyms
+const parseRows = raw => raw.trim().split('\n').map(l => { const [word,phonetic,pos,myanmar,sentence,synonyms] = l.split('|'); return {word,phonetic,pos,myanmar,sentence,synonyms}; });
 
 const GENERAL_RAW = `
-a shred of||phrase|အနည်းငယ်မျှ / အစအနမျှ|There isn't a shred of evidence to support his claim.
-abate||verb|လျော့နည်းသွားသည် / သက်သာသွားသည်|The heavy rain began to abate.
-abbreviate||verb|အတိုချုံ့သည် / အတိုကောက်ရေးသည်|The speaker had to abbreviate his presentation.
-abbreviate A as B||phrase|A ကို B အဖြစ် အတိုကောက်ပြုလုပ်သည်|We abbreviate "Assistant" as "Asst." in memos.
-abbreviate A to B||phrase|A ကို B သို့ အတိုချုံ့လိုက်သည်|I had to abbreviate the 10-page document to 5 pages.
-abbreviation||noun|အတိုကောက်စကားလုံး|"CEO" is a common abbreviation for Chief Executive Officer.
-abide by||verb|လိုက်နာသည် / စည်းကမ်းစောင့်ထိန်းသည်|All employees must abide by the safety regulations.
-abolish||verb|ပယ်ဖျက်သည် / ဖျက်သိမ်းသည်|The government decided to abolish the luxury tax.
-abolition||noun|ဖျက်သိမ်းခြင်း / ပယ်ဖျက်ခြင်း|The abolition of the internship program surprised everyone.
-abound||verb|ပေါများသည် / ပြည့်နှက်နေသည်|Opportunities for career growth abound here.
-abridge||verb|အတိုချုံ့သည် / ဖြတ်တောက်သည်|The editor decided to abridge the novel.
-abridged||adj|အတိုချုံ့ထားသော|I read the abridged version because I was in a hurry.
-abrupt||adj|ရုတ်တရက်ဖြစ်သော|The meeting came to an abrupt end.
-abruptly||adv|ရုတ်တရက် / ဝုန်းဒိုင်းကြဲ|The bus stopped abruptly to avoid an accident.
-abundance||noun|ပေါများခြင်း / ကြွယ်ဝခြင်း|There is an abundance of natural resources here.
-abundant||adj|ပေါများသော / ကြွယ်ဝသော|We have abundant evidence that the product is safe.
-accelerate||verb|အရှိန်မြှင့်တင်သည် / ပိုမြန်စေသည်|We need to accelerate the recruitment process.
-acceleration||noun|အရှိန်မြှင့်တင်ခြင်း / မြန်ဆန်လာခြင်း|There has been a rapid acceleration in online sales.
-accelerator||noun|အရှိန်မြှင့်စက် / အရှိန်မြှင့်တင်ပေးသောအရာ|This startup accelerator provides funding and mentorship.
-acceptance||noun|လက်ခံခြင်း / သဘောတူခြင်း|We are waiting for the candidate's acceptance of our offer.
-accident||noun|မတော်တဆမှု|I deleted the file by accident.
-accidental||adj|မတော်တဆဖြစ်သော|The policy covers accidental damage to the property.
-accidentally||adv|မတော်တဆ / မရည်ရွယ်ဘဲ|I accidentally sent the email to the wrong client.
-acclaim||verb|ချီးကျူးသည် / ဂုဏ်ပြုသည်|The new design was widely acclaimed by critics.
-accommodate||verb|နေရာပေးသည် / အဆင်ပြေအောင်ဆောင်ရွက်ပေးသည်|The room can accommodate up to 100 guests.
-accommodating||adj|ဖော်ရွေသော / ကူညီတတ်သော|The hotel staff were very accommodating.
-accommodation||noun|တည်းခိုနေထိုင်စရာ / ညှိနှိုင်းမှု|The company will pay for your travel and accommodation.
-accomplish||verb|ပြီးမြောက်အောင်မြင်အောင်လုပ်ဆောင်သည်|We can accomplish more if we work as a team.
-accomplished||adj|ကျွမ်းကျင်သော / အောင်မြင်မှုရထားသော|She is an accomplished pianist.
-accomplishment||noun|အောင်မြင်မှု / ပြီးမြောက်မှု|Winning the award was a great accomplishment.
-accordingly||adv|ထို့ကြောင့် / အခြေအနေနှင့်အညီ|We moved the event indoors accordingly.
-account||noun|အကောင့် / ဘဏ်စာရင်း / မှတ်တမ်း / ဖောက်သည်|He opened a new savings account yesterday.
-account for||verb|ရှင်းပြသည် / အချိုးအစားရှိသည်|Online orders account for over 60% of our revenue.
-accountability||noun|တာဝန်ယူမှု / တာဝန်ခံမှု|There is a need for more accountability in the public sector.
-accuracy||noun|တိကျမှု / မှန်ကန်မှု|Double-check the data to ensure accuracy.
-accurate||adj|တိကျသော / မှန်ကန်သော|We need accurate information before deciding.
-accurately||adv|တိကျစွာ / မှန်ကန်စွာ|The software calculates taxes accurately.
-accuse A of B||phrase|A ကို B ကြောင့် စွပ်စွဲသည်|They accused the former employee of stealing trade secrets.
-acknowledge||verb|အသိအမှတ်ပြုသည် / လက်ခံရရှိကြောင်းအကြောင်းကြားသည်|Please acknowledge receipt of this email.
-acknowledgement||noun|အသိအမှတ်ပြုခြင်း / လက်ခံရရှိကြောင်းအတည်ပြုချက်|We sent an acknowledgement letter.
-acquire||verb|ရရှိသည် / ဝယ်ယူပိုင်ဆိုင်သည်|The local bank was acquired by a large corporation.
-across the board||idiom|အားလုံးအတွက် / ခြုံငုံ၍|We need to cut costs across the board.
-across-the-board||adj|အားလုံးနှင့်သက်ဆိုင်သော|The manager announced an across-the-board pay rise.
-activate||verb|စတင်စေသည် / အသက်သွင်းသည်|Enter the code to activate your new credit card.
-active||adj|တက်ကြွသော / အလုပ်လုပ်နေသော|The founder remains very active in the company.
-activity||noun|လှုပ်ရှားမှု / ဆောင်ရွက်ချက်|There has been a lot of economic activity recently.
-acute||adj|ပြင်းထန်သော / စူးရှသော|The company faces an acute shortage of skilled labor.
-adapt||verb|လိုက်လျောညီထွေဖြစ်အောင်နေထိုင်သည် / ပြုပြင်ပြောင်းလဲသည်|Successful companies adapt to changing markets.
-adapt A to B||phrase|A ကို B နှင့်ကိုက်ညီအောင်ပြုပြင်သည်|We need to adapt the software to our business needs.
-adapt to||verb|အသားကျအောင်လုပ်သည် / လိုက်လျောညီထွေဖြစ်သည်|It's important to adapt to the local culture.
-adaptation||noun|ပြုပြင်ပြောင်းလဲမှု / ဆီလျော်အောင်ပြုပြင်ထားသောအရာ|The film is an adaptation of a famous novel.
-add||verb|ပေါင်းထည့်သည် / ထပ်ပြောသည်|Don't forget to add your signature.
-add A to B||phrase|A ကို B ထဲသို့ ပေါင်းထည့်သည်|Please add my name to the mailing list.
-additional||adj|ထပ်ဆောင်းသော / ပိုမိုသော|If you need additional information, contact our office.
-additive||noun|ဖြည့်စွက်စာ / ရောစပ်ပစ္စည်း|This juice contains no artificial additives.
-adept||adj|ကျွမ်းကျင်သော / တတ်မြောက်သော|She is very adept at dealing with difficult customers.
-adhere||verb|ကပ်ညိသည် / စွဲကပ်သည်|Make sure the surface is clean so the glue can adhere.
-adhere to||verb|လိုက်နာသည် / စွဲကိုင်ကျင့်သုံးသည်|All employees must adhere to the code of conduct.
-adherence||noun|လိုက်နာခြင်း / စွဲကပ်ခြင်း|Strict adherence to the budget is necessary.
-adherent||noun|လိုက်နာသူ / ထောက်ခံသူ|He is a loyal adherent of this political party.
-adjacent||adj|ကပ်လျက်ရှိသော / ဘေးချင်းကပ်|The cafeteria is adjacent to the main lobby.
-adjourn||verb|အစည်းအဝေးကို ခေတ္တရပ်နားသည်|The chairperson decided to adjourn the meeting.
-adjournment||noun|အစည်းအဝေးရပ်နားခြင်း / ရွှေ့ဆိုင်းခြင်း|After the adjournment, the directors discussed the issue.
-adjust||verb|ချိန်ညှိသည် / ပြုပြင်သည်|You can adjust the brightness of the screen.
-adjust A to B||phrase|A ကို B နှင့်ကိုက်ညီအောင်ချိန်ညှိသည်|Please adjust your chair to a comfortable height.
-adjustable||adj|ချိန်ညှိနိုင်သော / ပြုပြင်ပြောင်းလဲနိုင်သော|This desk has an adjustable height feature.
-adjustment||noun|ချိန်ညှိခြင်း / ပြုပြင်ပြောင်းလဲမှု|We made a slight adjustment to the plan.
-administer||verb|စီမံခန့်ခွဲသည် / ဆောင်ရွက်ပေးသည် / ဆေးထိုးသည်|HR will administer the new training program.
-administration||noun|စီမံခန့်ခွဲမှု / အုပ်ချုပ်ရေးအဖွဲ့|The company's administration is on the top floor.
-administrative||adj|စီမံခန့်ခွဲမှုဆိုင်ရာ / ရုံးလုပ်ငန်းဆိုင်ရာ|He is looking for an administrative assistant job.
-administrator||noun|စီမံခန့်ခွဲသူ / အုပ်ချုပ်သူ|Contact the system administrator if you lose your password.
-adopt||verb|လက်ခံကျင့်သုံးသည် / မွေးစားသည် / အတည်ပြုသည်|The board decided to adopt a new hiring policy.
-adoption||noun|လက်ခံကျင့်သုံးခြင်း / မွေးစားခြင်း|The adoption of new technology boosted productivity.
-adorn A with B||phrase|A ကို B ဖြင့် ဆင်ယင်မွမ်းမံသည်|They decided to adorn the office with fresh flowers.
-adversary||noun|ရန်သူ / ပြိုင်ဘက်|It is important to understand the strengths of your adversary.
-adverse||adj|ဆိုးဝါးသော / မကောင်းသော / ဆန့်ကျင်ဘက်ဖြစ်သော|The flight was canceled due to adverse weather conditions.
-advertise||verb|ကြော်ငြာသည်|The company plans to advertise its product on social media.
-advice||noun|အကြံဉာဏ်|My mentor gave me some valuable advice.
-advisable||adj|အကြံပြုလိုသော / သင့်တော်သော|It is advisable to book flights a month in advance.
-advise||verb|အကြံပေးသည်|Our legal team will advise you on the contract.
-advise A to do||phrase|A ကို တစ်ခုခုလုပ်ဖို့ အကြံပေးသည်|The doctor advised him to take a few days off.
-advisor||noun|အကြံပေးပုဂ္ဂိုလ်|She works as a senior financial advisor.
-advisory||adj|အကြံပေးသော / သတိပေးချက်|The company formed an advisory board.
-advocacy||noun|ထောက်ခံပြောဆိုခြင်း / ရှေ့ဆောင်လိုက်ခြင်း|Her advocacy for environmental protection is well-known.
-advocate||verb|ထောက်ခံအားပေးသူ / ထောက်ခံပြောဆိုသည်|The CEO continues to advocate for sustainable practices.
-affiliate||verb|တွဲဖက်သည် / အဖွဲ့ဝင်အဖြစ်လက်ခံသည်|Our hospital is affiliated with a major university.
-affiliation||noun|ဆက်သွယ်မှု / အဖွဲ့ဝင်အဖြစ်ပါဝင်မှု|Please state your political affiliation.
-affirm||verb|အတည်ပြုသည် / အခိုင်အမာဆိုသည်|The CEO affirmed that there would be no job cuts.
-affirmation||noun|အတည်ပြုချက် / အခိုင်အမာပြောဆိုခြင်း|The project received a formal affirmation from the board.
-affirmative||adj|အပြုသဘောဆောင်သော / ထောက်ခံသော|The manager's answer to my request was affirmative.
-affluence||noun|ကြွယ်ဝချမ်းသာမှု / ပေါများမှု|Many people moved to the suburbs in search of affluence.
-affluent||adj|ကြွယ်ဝချမ်းသာသော|The shop targets affluent customers.
-afterward||adv|နောက်ပိုင်းတွင် / နောက်မှ|We had a short meeting and went to dinner afterward.
-age||noun|အသက် / ခေတ် / သက်တမ်း|We are living in the digital age.
-aged||adj|အသက်...ရှိသော / သက်ကြီးရွယ်အို|The program is for children aged between five and ten.
-agenda||noun|အစည်းအဝေးအစီအစဉ် / လုပ်ငန်းစဉ်|The first item on the agenda is the budget report.
-aggravate||verb|ပိုမိုဆိုးရွားစေသည် / ဒေါသဆွသည်|High stress can aggravate existing health problems.
-aggravation||noun|ပိုမိုဆိုးရွားလာခြင်း / စိတ်ပျက်စရာအခြေအနေ|The delay caused a lot of aggravation for customers.
-aging||adj|အိုမင်းရင့်ရော်ခြင်း / ဟောင်းနွမ်းလာခြင်း|The company needs to replace its aging computer systems.
-agree||verb|သဘောတူသည် / လက်ခံသည်|I entirely agree with your suggestion.
-aim for||phrase|ရည်မှန်းသည် / ဦးတည်သည်|We should aim for a 20% increase in sales.
-aircraft||noun|လေယာဉ် / ပျံသန်းရေးယာဉ်|The technician is checking the aircraft.
-airplane||noun|လေယာဉ်ပျံ|The airplane is scheduled to take off at 9:00 AM.
-all told||idiom|အားလုံးပေါင်းလျှင် / ခြုံငုံကြည့်လျှင်|All told, there were over 500 applicants.
-allegation||noun|စွပ်စွဲချက်|The company denied the allegations of unfair practices.
-allege||verb|စွပ်စွဲသည် / အခိုင်အမာဆိုသည်|The prosecutor alleges that the defendant stole documents.
-alleged||adj|စွပ်စွဲခံထားရသော|The alleged crime took place late Sunday night.
-allegedly||adv|စွပ်စွဲချက်များအရ / ပြောဆိုချက်အရ|The official allegedly accepted bribes.
+a shred of||phrase|အနည်းငယ်မျှ / အစအနမျှ|There isn't a shred of evidence to support his claim.|A tiny bit, A grain of, A trace of
+abate||verb|လျော့နည်းသွားသည် / သက်သာသွားသည်|The heavy rain began to abate.|Decrease, Subside, Lessen
+abbreviate||verb|အတိုချုံ့သည် / အတိုကောက်ရေးသည်|The speaker had to abbreviate his presentation.|Shorten, Condense, Abridge
+abbreviate A as B||phrase|A ကို B အဖြစ် အတိုကောက်ပြုလုပ်သည်|We abbreviate "Assistant" as "Asst." in memos.|Refer to A as B (in short form)
+abbreviate A to B||phrase|A ကို B သို့ အတိုချုံ့လိုက်သည်|I had to abbreviate the 10-page document to 5 pages.|Shorten A to B, Cut down
+abbreviation||noun|အတိုကောက်စကားလုံး|"CEO" is a common abbreviation for Chief Executive Officer.|Acronym, Short form
+abide by||verb|လိုက်နာသည် / စည်းကမ်းစောင့်ထိန်းသည်|All employees must abide by the safety regulations.|Comply with, Follow, Adhere to
+abolish||verb|ပယ်ဖျက်သည် / ဖျက်သိမ်းသည်|The government decided to abolish the luxury tax.|Eliminate, Cancel, Eradicate
+abolition||noun|ဖျက်သိမ်းခြင်း / ပယ်ဖျက်ခြင်း|The abolition of the internship program surprised everyone.|Cancellation, Elimination, Removal
+abound||verb|ပေါများသည် / ပြည့်နှက်နေသည်|Opportunities for career growth abound here.|Be plentiful, Flourish, Teem with
+abridge||verb|အတိုချုံ့သည် / ဖြတ်တောက်သည်|The editor decided to abridge the novel.|Shorten, Condense, Summarize
+abridged||adj|အတိုချုံ့ထားသော|I read the abridged version because I was in a hurry.|Shortened, Condensed
+abrupt||adj|ရုတ်တရက်ဖြစ်သော|The meeting came to an abrupt end.|Sudden, Unexpected, Immediate
+abruptly||adv|ရုတ်တရက် / ဝုန်းဒိုင်းကြဲ|The bus stopped abruptly to avoid an accident.|Suddenly, Sharply, Unexpectedly
+abundance||noun|ပေါများခြင်း / ကြွယ်ဝခြင်း|There is an abundance of natural resources here.|Plenty, Wealth, Profusion
+abundant||adj|ပေါများသော / ကြွယ်ဝသော|We have abundant evidence that the product is safe.|Plentiful, Ample, Copious
+accelerate||verb|အရှိန်မြှင့်တင်သည် / ပိုမြန်စေသည်|We need to accelerate the recruitment process.|Speed up, Hasten, Expedite
+acceleration||noun|အရှိန်မြှင့်တင်ခြင်း / မြန်ဆန်လာခြင်း|There has been a rapid acceleration in online sales.|Speeding up, Escalation
+accelerator||noun|အရှိန်မြှင့်စက် / အရှိန်မြှင့်တင်ပေးသောအရာ|This startup accelerator provides funding and mentorship.|Catalyst, Stimulant, Gas pedal
+acceptance||noun|လက်ခံခြင်း / သဘောတူခြင်း|We are waiting for the candidate's acceptance of our offer.|Approval, Consent, Recognition
+accident||noun|မတော်တဆမှု|I deleted the file by accident.|Mishap, Misfortune, Collision
+accidental||adj|မတော်တဆဖြစ်သော|The policy covers accidental damage to the property.|Unintentional, Unplanned, Chance
+accidentally||adv|မတော်တဆ / မရည်ရွယ်ဘဲ|I accidentally sent the email to the wrong client.|Unintentionally, Inadvertently, By mistake
+acclaim||verb|ချီးကျူးသည် / ဂုဏ်ပြုသည်|The new design was widely acclaimed by critics.|Praise, Applaud, Commend
+accommodate||verb|နေရာပေးသည် / အဆင်ပြေအောင်ဆောင်ရွက်ပေးသည်|The room can accommodate up to 100 guests.|House, Lodge, Oblige, Fit
+accommodating||adj|ဖော်ရွေသော / ကူညီတတ်သော|The hotel staff were very accommodating.|Helpful, Obliging, Cooperative
+accommodation||noun|တည်းခိုနေထိုင်စရာ / ညှိနှိုင်းမှု|The company will pay for your travel and accommodation.|Lodging, Housing, Arrangement
+accomplish||verb|ပြီးမြောက်အောင်မြင်အောင်လုပ်ဆောင်သည်|We can accomplish more if we work as a team.|Achieve, Complete, Fulfill
+accomplished||adj|ကျွမ်းကျင်သော / အောင်မြင်မှုရထားသော|She is an accomplished pianist.|Skilled, Expert, Talented
+accomplishment||noun|အောင်မြင်မှု / ပြီးမြောက်မှု|Winning the award was a great accomplishment.|Achievement, Success, Feat
+accordingly||adv|ထို့ကြောင့် / အခြေအနေနှင့်အညီ|We moved the event indoors accordingly.|Therefore, Consequently, Appropriately
+account||noun|အကောင့် / ဘဏ်စာရင်း / မှတ်တမ်း / ဖောက်သည်|He opened a new savings account yesterday.|Record, Client, Description
+account for||verb|ရှင်းပြသည် / အချိုးအစားရှိသည်|Online orders account for over 60% of our revenue.|Explain, Comprise, Constitute
+accountability||noun|တာဝန်ယူမှု / တာဝန်ခံမှု|There is a need for more accountability in the public sector.|Responsibility, Liability, Answerability
+accuracy||noun|တိကျမှု / မှန်ကန်မှု|Double-check the data to ensure accuracy.|Precision, Exactness, Correctness
+accurate||adj|တိကျသော / မှန်ကန်သော|We need accurate information before deciding.|Precise, Correct, Exact
+accurately||adv|တိကျစွာ / မှန်ကန်စွာ|The software calculates taxes accurately.|Precisely, Correctly, Exactly
+accuse A of B||phrase|A ကို B ကြောင့် စွပ်စွဲသည်|They accused the former employee of stealing trade secrets.|Blame, Charge with
+acknowledge||verb|အသိအမှတ်ပြုသည် / လက်ခံရရှိကြောင်းအကြောင်းကြားသည်|Please acknowledge receipt of this email.|Admit, Recognize, Confirm receipt
+acknowledgement||noun|အသိအမှတ်ပြုခြင်း / လက်ခံရရှိကြောင်းအတည်ပြုချက်|We sent an acknowledgement letter.|Recognition, Confirmation, Admission
+acquire||verb|ရရှိသည် / ဝယ်ယူပိုင်ဆိုင်သည်|The local bank was acquired by a large corporation.|Obtain, Gain, Purchase, Get
+across the board||idiom|အားလုံးအတွက် / ခြုံငုံ၍|We need to cut costs across the board.|Universal, General, Including everyone
+across-the-board||adj|အားလုံးနှင့်သက်ဆိုင်သော|The manager announced an across-the-board pay rise.|Comprehensive, Universal, Global
+activate||verb|စတင်စေသည် / အသက်သွင်းသည်|Enter the code to activate your new credit card.|Trigger, Set off, Turn on, Enable
+active||adj|တက်ကြွသော / အလုပ်လုပ်နေသော|The founder remains very active in the company.|Energetic, Operational, Functioning
+activity||noun|လှုပ်ရှားမှု / ဆောင်ရွက်ချက်|There has been a lot of economic activity recently.|Action, Operation, Task, Exercise
+acute||adj|ပြင်းထန်သော / စူးရှသော|The company faces an acute shortage of skilled labor.|Severe, Intense, Critical, Sharp
+adapt||verb|လိုက်လျောညီထွေဖြစ်အောင်နေထိုင်သည် / ပြုပြင်ပြောင်းလဲသည်|Successful companies adapt to changing markets.|Adjust, Modify, Accommodate, Suit
+adapt A to B||phrase|A ကို B နှင့်ကိုက်ညီအောင်ပြုပြင်သည်|We need to adapt the software to our business needs.|Modify A for B, Adjust A for B
+adapt to||verb|အသားကျအောင်လုပ်သည် / လိုက်လျောညီထွေဖြစ်သည်|It's important to adapt to the local culture.|Adjust to, Get used to, Acclimatize to
+adaptation||noun|ပြုပြင်ပြောင်းလဲမှု / ဆီလျော်အောင်ပြုပြင်ထားသောအရာ|The film is an adaptation of a famous novel.|Adjustment, Modification, Version
+add||verb|ပေါင်းထည့်သည် / ထပ်ပြောသည်|Don't forget to add your signature.|Include, Attach, Supplement
+add A to B||phrase|A ကို B ထဲသို့ ပေါင်းထည့်သည်|Please add my name to the mailing list.|Combine A with B, Insert A into B
+additional||adj|ထပ်ဆောင်းသော / ပိုမိုသော|If you need additional information, contact our office.|Extra, Added, Supplementary, Further
+additive||noun|ဖြည့်စွက်စာ / ရောစပ်ပစ္စည်း|This juice contains no artificial additives.|Supplement, Admixture, Component
+adept||adj|ကျွမ်းကျင်သော / တတ်မြောက်သော|She is very adept at dealing with difficult customers.|Skilled, Proficient, Expert, Gifted
+adhere||verb|ကပ်ညိသည် / စွဲကပ်သည်|Make sure the surface is clean so the glue can adhere.|Stick, Cling, Cohere
+adhere to||verb|လိုက်နာသည် / စွဲကိုင်ကျင့်သုံးသည်|All employees must adhere to the code of conduct.|Comply with, Abide by, Follow
+adherence||noun|လိုက်နာခြင်း / စွဲကပ်ခြင်း|Strict adherence to the budget is necessary.|Compliance, Observation, Attachment
+adherent||noun|လိုက်နာသူ / ထောက်ခံသူ|He is a loyal adherent of this political party.|Follower, Supporter, Disciple
+adjacent||adj|ကပ်လျက်ရှိသော / ဘေးချင်းကပ်|The cafeteria is adjacent to the main lobby.|Next to, Beside, Neighboring, Adjoining
+adjourn||verb|အစည်းအဝေးကို ခေတ္တရပ်နားသည်|The chairperson decided to adjourn the meeting.|Suspend, Postpone, Recess
+adjournment||noun|အစည်းအဝေးရပ်နားခြင်း / ရွှေ့ဆိုင်းခြင်း|After the adjournment, the directors discussed the issue.|Suspension, Recess, Postponement
+adjust||verb|ချိန်ညှိသည် / ပြုပြင်သည်|You can adjust the brightness of the screen.|Modify, Adapt, Alter, Regulate
+adjust A to B||phrase|A ကို B နှင့်ကိုက်ညီအောင်ချိန်ညှိသည်|Please adjust your chair to a comfortable height.|Align A with B, Adapt A to B
+adjustable||adj|ချိန်ညှိနိုင်သော / ပြုပြင်ပြောင်းလဲနိုင်သော|This desk has an adjustable height feature.|Flexible, Modifiable, Adaptable
+adjustment||noun|ချိန်ညှိခြင်း / ပြုပြင်ပြောင်းလဲမှု|We made a slight adjustment to the plan.|Modification, Alteration, Adaptation
+administer||verb|စီမံခန့်ခွဲသည် / ဆောင်ရွက်ပေးသည် / ဆေးထိုးသည်|HR will administer the new training program.|Manage, Direct, Execute, Supervise
+administration||noun|စီမံခန့်ခွဲမှု / အုပ်ချုပ်ရေးအဖွဲ့|The company's administration is on the top floor.|Management, Governance, Leadership
+administrative||adj|စီမံခန့်ခွဲမှုဆိုင်ရာ / ရုံးလုပ်ငန်းဆိုင်ရာ|He is looking for an administrative assistant job.|Managerial, Executive, Secretarial
+administrator||noun|စီမံခန့်ခွဲသူ / အုပ်ချုပ်သူ|Contact the system administrator if you lose your password.|Manager, Director, Controller
+adopt||verb|လက်ခံကျင့်သုံးသည် / မွေးစားသည် / အတည်ပြုသည်|The board decided to adopt a new hiring policy.|Accept, Approve, Embrace, Implement
+adoption||noun|လက်ခံကျင့်သုံးခြင်း / မွေးစားခြင်း|The adoption of new technology boosted productivity.|Acceptance, Implementation, Approval
+adorn A with B||phrase|A ကို B ဖြင့် ဆင်ယင်မွမ်းမံသည်|They decided to adorn the office with fresh flowers.|Decorate, Embellish, Ornament
+adversary||noun|ရန်သူ / ပြိုင်ဘက်|It is important to understand the strengths of your adversary.|Opponent, Rival, Competitor, Enemy
+adverse||adj|ဆိုးဝါးသော / မကောင်းသော / ဆန့်ကျင်ဘက်ဖြစ်သော|The flight was canceled due to adverse weather conditions.|Unfavorable, Negative, Harmful, Hostile
+advertise||verb|ကြော်ငြာသည်|The company plans to advertise its product on social media.|Promote, Publicize, Announce
+advice||noun|အကြံဉာဏ်|My mentor gave me some valuable advice.|Guidance, Suggestion, Counsel, Recommendation
+advisable||adj|အကြံပြုလိုသော / သင့်တော်သော|It is advisable to book flights a month in advance.|Recommended, Prudent, Sensible, Appropriate
+advise||verb|အကြံပေးသည်|Our legal team will advise you on the contract.|Counsel, Suggest, Recommend, Inform
+advise A to do||phrase|A ကို တစ်ခုခုလုပ်ဖို့ အကြံပေးသည်|The doctor advised him to take a few days off.|Urge A to do, Encourage A to do
+advisor||noun|အကြံပေးပုဂ္ဂိုလ်|She works as a senior financial advisor.|Consultant, Counselor, Mentor
+advisory||adj|အကြံပေးသော / သတိပေးချက်|The company formed an advisory board.|Consultative, Warning, Notice
+advocacy||noun|ထောက်ခံပြောဆိုခြင်း / ရှေ့ဆောင်လိုက်ခြင်း|Her advocacy for environmental protection is well-known.|Support, Promotion, Endorsement
+advocate||verb|ထောက်ခံအားပေးသူ / ထောက်ခံပြောဆိုသည်|The CEO continues to advocate for sustainable practices.|Support, Champion, Proponent, Back
+affiliate||verb|တွဲဖက်သည် / အဖွဲ့ဝင်အဖြစ်လက်ခံသည်|Our hospital is affiliated with a major university.|Associate, Connect, Ally, Branch
+affiliation||noun|ဆက်သွယ်မှု / အဖွဲ့ဝင်အဖြစ်ပါဝင်မှု|Please state your political affiliation.|Association, Connection, Membership, Alliance
+affirm||verb|အတည်ပြုသည် / အခိုင်အမာဆိုသည်|The CEO affirmed that there would be no job cuts.|Confirm, Assert, Declare, Validate
+affirmation||noun|အတည်ပြုချက် / အခိုင်အမာပြောဆိုခြင်း|The project received a formal affirmation from the board.|Confirmation, Ratification, Assurance
+affirmative||adj|အပြုသဘောဆောင်သော / ထောက်ခံသော|The manager's answer to my request was affirmative.|Positive, Agreeing, Supporting
+affluence||noun|ကြွယ်ဝချမ်းသာမှု / ပေါများမှု|Many people moved to the suburbs in search of affluence.|Wealth, Prosperity, Opulence, Riches
+affluent||adj|ကြွယ်ဝချမ်းသာသော|The shop targets affluent customers.|Wealthy, Rich, Prosperous, Well-off
+afterward||adv|နောက်ပိုင်းတွင် / နောက်မှ|We had a short meeting and went to dinner afterward.|Later, Subsequently, Thereafter
+age||noun|အသက် / ခေတ် / သက်တမ်း|We are living in the digital age.|Era, Period, Lifetime
+aged||adj|အသက်...ရှိသော / သက်ကြီးရွယ်အို|The program is for children aged between five and ten.|Elderly, Old, Senior
+agenda||noun|အစည်းအဝေးအစီအစဉ် / လုပ်ငန်းစဉ်|The first item on the agenda is the budget report.|Schedule, Timetable, Program, List
+aggravate||verb|ပိုမိုဆိုးရွားစေသည် / ဒေါသဆွသည်|High stress can aggravate existing health problems.|Worsen, Exacerbate, Irritate
+aggravation||noun|ပိုမိုဆိုးရွားလာခြင်း / စိတ်ပျက်စရာအခြေအနေ|The delay caused a lot of aggravation for customers.|Worsening, Irritation, Annoyance
+aging||adj|အိုမင်းရင့်ရော်ခြင်း / ဟောင်းနွမ်းလာခြင်း|The company needs to replace its aging computer systems.|Getting old, Maturing, Declining
+agree||verb|သဘောတူသည် / လက်ခံသည်|I entirely agree with your suggestion.|Consent, Accept, Concur
+aim for||phrase|ရည်မှန်းသည် / ဦးတည်သည်|We should aim for a 20% increase in sales.|Target, Goal, Strive for, Aspire to
+aircraft||noun|လေယာဉ် / ပျံသန်းရေးယာဉ်|The technician is checking the aircraft.|Airplane, Plane, Jet, Vehicle
+airplane||noun|လေယာဉ်ပျံ|The airplane is scheduled to take off at 9:00 AM.|Plane, Aircraft, Jet
+all told||idiom|အားလုံးပေါင်းလျှင် / ခြုံငုံကြည့်လျှင်|All told, there were over 500 applicants.|In total, Altogether, Overall
+allegation||noun|စွပ်စွဲချက်|The company denied the allegations of unfair practices.|Accusation, Claim, Charge
+allege||verb|စွပ်စွဲသည် / အခိုင်အမာဆိုသည်|The prosecutor alleges that the defendant stole documents.|Claim, Accuse, Assert
+alleged||adj|စွပ်စွဲခံထားရသော|The alleged crime took place late Sunday night.|Supposed, Purported, Reported
+allegedly||adv|စွပ်စွဲချက်များအရ / ပြောဆိုချက်အရ|The official allegedly accepted bribes.|Reportedly, Supposedly, Presumably
 `;
 
 const GENERAL_DATA = parseRows(GENERAL_RAW);
@@ -403,7 +403,8 @@ function renderVocabList(){
         ${it.phonetic?`<p class="text-xs font-mono text-slate-400 mt-0.5">${it.phonetic}</p>`:''}</div>
         <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold uppercase rounded-md">${it.pos||'vocab'}</span></div>
       <div class="mt-4 pt-3 border-t border-slate-100"><p class="myanmar-text text-lg font-bold text-indigo-950">${it.myanmar||'—'}</p>
-      ${it.sentence?`<p class="text-xs text-slate-500 italic mt-1 font-serif">"${it.sentence}"</p>`:''}</div></div>`).join('');
+      ${it.sentence?`<p class="text-xs text-slate-500 italic mt-1 font-serif">"${it.sentence}"</p>`:''}
+      ${it.synonyms?`<div class="mt-3 flex flex-wrap items-center gap-1.5"><span class="text-[11px] font-bold text-emerald-700 uppercase">Synonyms:</span>${it.synonyms.split(',').map(x=>`<span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs">${x.trim()}</span>`).join('')}</div>`:''}</div></div>`).join('');
 }
 function filterVocab(){
   const q = $('search-input').value.toLowerCase();
@@ -431,7 +432,7 @@ function updateFlashcardUI(){
   if (!state.activeVocabList.length){ $('card-word-front').innerText='No Words'; $('card-myanmar-back').innerText='No Data'; $('card-counter').innerText='0 / 0'; return; }
   const c = state.activeVocabList[state.cardIndex];
   $('card-pos-front').innerText = c.pos||'WORD'; $('card-word-front').innerText = c.word; $('card-phonetic-front').innerText = c.phonetic||'';
-  $('card-pos-back').innerText = c.pos||'MEANING'; $('card-myanmar-back').innerText = c.myanmar||'—'; $('card-sentence-back').innerText = c.sentence?`"${c.sentence}"`:'';
+  $('card-pos-back').innerText = c.pos||'MEANING'; $('card-myanmar-back').innerText = c.myanmar||'—'; $('card-sentence-back').innerText = c.sentence?`"${c.sentence}"`:''; $('card-syn-back').innerText = c.synonyms?`Synonyms: ${c.synonyms}`:'';
   $('card-counter').innerText = `${state.cardIndex+1} / ${state.activeVocabList.length}`;
 }
 function nextCard(){ const n=state.activeVocabList.length; if(!n)return; state.cardIndex=(state.cardIndex+1)%n; updateFlashcardUI(); }
